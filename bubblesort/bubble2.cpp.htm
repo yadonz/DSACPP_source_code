@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>bubble2.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>void</font> bubblesort2( <font color=#0000FF>int</font> A[], <font color=#0000FF>int</font> n ) { <font color=#008000>//起泡排序算法（版本2）：0 &lt;= n</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   <font color=#0000FF>for</font> ( <font color=#0000FF>int</font> m; 1 <font color=#AA5500>&lt;</font> n; n <font color=#AA5500>=</font> m ) { <font color=#008000>//在尚未确认已全局排序之前，逐趟进行扫描交换</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>      <font color=#0000FF>for</font> ( <font color=#0000FF>int</font> i <font color=#AA5500>=</font> m <font color=#AA5500>=</font> 1; i <font color=#AA5500>&lt;</font> n; i++ ) { <font color=#008000>//自左向右逐对检查当前范围A[0, m)内的各相邻元素</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>         <font color=#0000FF>if</font> ( A<font color=#AA5500>[</font>i-1<font color=#AA5500>]</font> <font color=#AA5500>&gt;</font> A<font color=#AA5500>[</font>i<font color=#AA5500>]</font> ) { <font color=#008000>//一旦A[i-1]与A[i]逆序，则</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>            swap( A<font color=#AA5500>[</font>i <font color=#AA5500>-</font> 1], A<font color=#AA5500>[</font>i<font color=#AA5500>]</font> ); <font color=#008000>//交换之，并</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>            m <font color=#AA5500>=</font> i; <font color=#008000>//更新待排序区间的长度</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>         }
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>      }
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>   }
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>} <font color=#008000>//借助整数m尽快地收缩待排序区间：既可提前退出，更可减少每趟（及所有）扫描交换中元素比较操作</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span><font color=#008000>//对尾部有序（或接近有序）的输入，算法收敛的速度大大提高</font>
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span><font color=#008000>//元素交换的次数仅取决于输入序列，与版本0和版本1相同</font>
+</b></p></pre>
+</body>
+</html>

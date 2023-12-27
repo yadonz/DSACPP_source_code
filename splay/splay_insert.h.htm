@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>splay_insert.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> Splay<font color=#AA5500>&lt;</font>T&gt;::insert( <font color=#0000FF>const</font> T& e ) { <font color=#008000>//将关键码e插入伸展树中</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   <font color=#0000FF>if</font> ( !_root ) { _size <font color=#AA5500>=</font> 1; <font color=#0000FF>return</font> _root <font color=#AA5500>=</font> <font color=#0000FF>new</font> BinNode<font color=#AA5500>&lt;</font>T&gt;( e ); } <font color=#008000>//原树为空</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> t <font color=#AA5500>=</font> search( e );
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   <font color=#0000FF>if</font> ( e == t-<font color=#AA5500>&gt;</font>data ) <font color=#0000FF>return</font> t; <font color=#008000>//目标节点t若存在，伸展至根</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   <font color=#0000FF>if</font> ( t-<font color=#AA5500>&gt;</font>data <font color=#AA5500>&lt;</font> e ) { <font color=#008000>//在右侧嫁接</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>      t-<font color=#AA5500>&gt;</font>parent <font color=#AA5500>=</font> _root <font color=#AA5500>=</font> <font color=#0000FF>new</font> BinNode<font color=#AA5500>&lt;</font>T&gt;( e, NULL, t, t-<font color=#AA5500>&gt;</font>rc ); <font color=#008000>// lc == t必非空</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>      <font color=#0000FF>if</font> ( t-<font color=#AA5500>&gt;</font>rc ) { t-<font color=#AA5500>&gt;</font>rc-<font color=#AA5500>&gt;</font>parent <font color=#AA5500>=</font> _root; t-<font color=#AA5500>&gt;</font>rc <font color=#AA5500>=</font> NULL; } <font color=#008000>// rc或为空</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>   } <font color=#0000FF>else</font> { <font color=#008000>//在左侧嫁接</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>      t-<font color=#AA5500>&gt;</font>parent <font color=#AA5500>=</font> _root <font color=#AA5500>=</font> <font color=#0000FF>new</font> BinNode<font color=#AA5500>&lt;</font>T&gt;( e, NULL, t-<font color=#AA5500>&gt;</font>lc, t ); <font color=#008000>// rc == t必非空</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>      <font color=#0000FF>if</font> ( t-<font color=#AA5500>&gt;</font>lc ) { t-<font color=#AA5500>&gt;</font>lc-<font color=#AA5500>&gt;</font>parent <font color=#AA5500>=</font> _root; t-<font color=#AA5500>&gt;</font>lc <font color=#AA5500>=</font> NULL; } <font color=#008000>// lc或为空</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>   }
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>   _size++; updateHeightAbove( t ); <font color=#0000FF>return</font> _root; <font color=#008000>//更新规模及高度，报告插入成功</font>
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>} <font color=#008000>//无论e是否存在于原树中，返回时总有_root-&gt;data == e</font>
+</b></p></pre>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>bintree_attach.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#008000>//将S当作节点x的左子树接入二叉树，S本身置空</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> BinTree<font color=#AA5500>&lt;</font>T&gt;::attach( BinTree<font color=#AA5500>&lt;</font>T&gt;<font color=#AA5500>*</font>& S, BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> x ) { <font color=#008000>// x-&gt;lc == NULL</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   <font color=#0000FF>if</font> ( x-<font color=#AA5500>&gt;</font>lc <font color=#AA5500>=</font> S-<font color=#AA5500>&gt;</font>_root ) x-<font color=#AA5500>&gt;</font>lc-<font color=#AA5500>&gt;</font>parent <font color=#AA5500>=</font> x; <font color=#008000>//接入</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   _size += S-<font color=#AA5500>&gt;</font>_size; updateHeightAbove( x ); <font color=#008000>//更新全树规模与x所有祖先的高度</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   S-<font color=#AA5500>&gt;</font>_root <font color=#AA5500>=</font> NULL; S-<font color=#AA5500>&gt;</font>_size <font color=#AA5500>=</font> 0; release( S ); S <font color=#AA5500>=</font> NULL; <font color=#0000FF>return</font> x; <font color=#008000>//释放原树，返回接入位置</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>}
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#008000>//将S当作节点x的右子树接入二叉树，S本身置空</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> BinTree<font color=#AA5500>&lt;</font>T&gt;::attach( BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> x, BinTree<font color=#AA5500>&lt;</font>T&gt;<font color=#AA5500>*</font>& S ) { <font color=#008000>// x-&gt;rc == NULL</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>   <font color=#0000FF>if</font> ( x-<font color=#AA5500>&gt;</font>rc <font color=#AA5500>=</font> S-<font color=#AA5500>&gt;</font>_root ) x-<font color=#AA5500>&gt;</font>rc-<font color=#AA5500>&gt;</font>parent <font color=#AA5500>=</font> x; <font color=#008000>//接入</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>   _size += S-<font color=#AA5500>&gt;</font>_size; updateHeightAbove( x ); <font color=#008000>//更新全树规模与x所有祖先的高度</font>
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>   S-<font color=#AA5500>&gt;</font>_root <font color=#AA5500>=</font> NULL; S-<font color=#AA5500>&gt;</font>_size <font color=#AA5500>=</font> 0; release( S ); S <font color=#AA5500>=</font> NULL; <font color=#0000FF>return</font> x; <font color=#008000>//释放原树，返回接入位置</font>
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>}
+</b></p></pre>
+</body>
+</html>

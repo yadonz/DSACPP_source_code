@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>splay_remove.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#0000FF>bool</font> Splay<font color=#AA5500>&lt;</font>T&gt;::remove( <font color=#0000FF>const</font> T& e ) { <font color=#008000>//从伸展树中删除关键码e</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   <font color=#0000FF>if</font> ( !_root || ( e != search( e )<font color=#AA5500>-</font><font color=#AA5500>&gt;</font>data ) ) <font color=#0000FF>return</font> <font color=#0000FF>false</font>; <font color=#008000>//若目标存在，则伸展至根</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> L <font color=#AA5500>=</font> _root-<font color=#AA5500>&gt;</font>lc, R <font color=#AA5500>=</font> _root-<font color=#AA5500>&gt;</font>rc; release( _root ); <font color=#008000>//记下左、右子树L、R后，释放之</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   <font color=#0000FF>if</font> ( !R ) { <font color=#008000>//若R空，则</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>      <font color=#0000FF>if</font> ( L ) L-<font color=#AA5500>&gt;</font>parent <font color=#AA5500>=</font> NULL; _root <font color=#AA5500>=</font> L; <font color=#008000>//L即是余树</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>   } <font color=#0000FF>else</font> { <font color=#008000>//否则</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>      _root <font color=#AA5500>=</font> R; R-<font color=#AA5500>&gt;</font>parent <font color=#AA5500>=</font> NULL; search( e ); <font color=#008000>//在R中再次查找e：注定失败，但其中的最小节点必</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>      <font color=#0000FF>if</font> (L) L-<font color=#AA5500>&gt;</font>parent <font color=#AA5500>=</font> _root; _root-<font color=#AA5500>&gt;</font>lc <font color=#AA5500>=</font> L; <font color=#008000>//伸展至根（且无左孩子），故可令其以L作为左子树</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>   }
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>   <font color=#0000FF>if</font> ( --_size ) updateHeight( _root ); <font color=#0000FF>return</font> <font color=#0000FF>true</font>; <font color=#008000>//更新规模及树高，报告删除成功</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>}
+</b></p></pre>
+</body>
+</html>

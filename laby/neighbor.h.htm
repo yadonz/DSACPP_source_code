@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>neighbor.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>inline</font> Cell<font color=#AA5500>*</font> neighbor ( Cell<font color=#AA5500>*</font> cell ) { <font color=#008000>//查询当前位置的相邻格点</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   <font color=#0000FF>switch</font> ( cell-<font color=#AA5500>&gt;</font>outgoing ) {
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>      <font color=#0000FF>case</font> EAST  : <font color=#0000FF>return</font> cell <font color=#AA5500>+</font> LABY_MAX; <font color=#008000>//向东</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>      <font color=#0000FF>case</font> SOUTH : <font color=#0000FF>return</font> cell <font color=#AA5500>+</font> 1;        <font color=#008000>//向南</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>      <font color=#0000FF>case</font> WEST  : <font color=#0000FF>return</font> cell <font color=#AA5500>-</font> LABY_MAX; <font color=#008000>//向西</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>      <font color=#0000FF>case</font> NORTH : <font color=#0000FF>return</font> cell <font color=#AA5500>-</font> 1;        <font color=#008000>//向北</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>      <font color=#0000FF>default</font>    : exit ( -1 );
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>   }
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>}
+</b></p></pre>
+</body>
+</html>

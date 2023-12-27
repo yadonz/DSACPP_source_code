@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>crc_elem.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#0000FF>struct</font> Crc { <font color=#008000>//函数对象：累计T类对象的特征（比如总和），以便校验对象集合</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   T& c;
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   Crc ( T& crc ) : c ( crc ) {}
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   <font color=#0000FF>virtual</font> <font color=#0000FF>void</font> <font color=#0000FF>operator</font>() ( T& e ) { c += e; } <font color=#008000>//假设T可直接相加</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>};
+</b></p></pre>
+</body>
+</html>

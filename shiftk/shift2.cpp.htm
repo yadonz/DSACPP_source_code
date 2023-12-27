@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>shift2.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>int</font> shift2 ( <font color=#0000FF>int</font><font color=#AA5500>*</font> A, <font color=#0000FF>int</font> n, <font color=#0000FF>int</font> k ) { <font color=#008000>//借助倒置算法，将数组循环左移k位，O(3n)</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   k %= n; <font color=#008000>//确保k &lt;= n</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   reverse ( A, k ); <font color=#008000>//将区间A[0, k)倒置：O(3k/2)次操作</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   reverse ( A <font color=#AA5500>+</font> k, n <font color=#AA5500>-</font> k ); <font color=#008000>//将区间A[k, n)倒置：O(3(n - k)/2)次操作</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   reverse ( A, n ); <font color=#008000>//倒置整个数组A[0, n)：O(3n/2)次操作</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>   <font color=#0000FF>return</font> 3 <font color=#AA5500>*</font> n; <font color=#008000>//返回累计操作次数，以便与其它算法比较：3/2 * (k + (n - k) + n) = 3n</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>}
+</b></p></pre>
+</body>
+</html>

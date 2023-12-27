@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>simu.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#800080>#include &lt;cstdio&gt;</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#800080>#include &lt;cstdlib&gt;</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span><font color=#800080>#include &lt;ctime&gt;</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span><font color=#800080>#include &lt;climits&gt;</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span><font color=#800080>#include "queue/queue.h" </font><font color=#008000>//引入队列</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span><font color=#800080>#include "Customer.h" </font><font color=#008000>//顾客类</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span><font color=#0000FF>int</font> bestWindow ( Queue<font color=#AA5500>&lt;</font>Customer<font color=#AA5500>&gt;</font> window[], Rank nWin );
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span><font color=#0000FF>void</font> printCustomer ( Customer c );
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span><font color=#0000FF>void</font> displayProgress ( Queue<font color=#AA5500>&lt;</font>Customer<font color=#AA5500>&gt;</font> window[], Rank nWin, Rank now );
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span><font color=#0000FF>void</font> simulate ( Rank, Rank );
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span><font color=#0000FF>extern</font> <font color=#0000FF>int</font> delay; <font color=#008000>//控制进度显示的延迟</font>
+</b></p></pre>
+</body>
+</html>

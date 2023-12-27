@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>eratosthenes.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#800080>#include "Bitmap/Bitmap.h" </font><font color=#008000>//引入Bitmap结构</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span><font color=#008000>/******************************************************************************************</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span><font color=#008000> * 筛法求素数：找出小于n的所有素数</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span><font color=#008000> * 内循环每趟迭代O(n/i)步，外循环由素数定理至多n/ln(n)趟，累计耗时不过</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span><font color=#008000> *       n/2 + n/3 + n/5 + n/7 + n/11 + ...</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span><font color=#008000> *    &lt;  n/2 + n/3 + n/4 + n/6 + n/7 + ... + n/(n/ln(n))</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span><font color=#008000> *    =  O(n(ln(n/ln(n)) - 1))</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span><font color=#008000> *    =  O(nln(n) - nln(ln(n)) - 1)</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span><font color=#008000> *    =  O(nlog(n))</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span><font color=#008000> * 如下实现中，内循环的起点、外循环的终点都了优化</font>
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span><font color=#008000> ******************************************************************************************/</font>
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span><font color=#0000FF>void</font> Eratosthenes( Rank n, <font color=#0000FF>char</font><font color=#AA5500>*</font> file ) {
+<span class="line_num"><font color=#e8e8e8>00</font>15 </span>   Bitmap B( n ); B.set( 0 ); B.set( 1 ); <font color=#008000>// 0和1都不是素数</font>
+<span class="line_num"><font color=#e8e8e8>00</font>16 </span>   <font color=#0000FF>for</font> ( Rank i <font color=#AA5500>=</font> 2; i <font color=#AA5500>*</font> i <font color=#AA5500>&lt;</font> n; i++ ) <font color=#008000>//逐个地</font>
+<span class="line_num"><font color=#e8e8e8>00</font>17 </span>      <font color=#0000FF>if</font> ( !B.test( i ) ) <font color=#008000>//确认下一个素数i</font>
+<span class="line_num"><font color=#e8e8e8>00</font>18 </span>         <font color=#0000FF>for</font> ( Rank j <font color=#AA5500>=</font> i <font color=#AA5500>*</font> i; j <font color=#AA5500>&lt;</font> n; j += i ) <font color=#008000>//并将一系列能被i整除的</font>
+<span class="line_num"><font color=#e8e8e8>00</font>19 </span>            B.set( j ); <font color=#008000>// j标记为合数（小于i*i的合数，必在此之前已被标记）</font>
+<span class="line_num"><font color=#e8e8e8>00</font>20 </span>   B.dump( file ); <font color=#008000>//将筛选标记统一存入指定文件，以便日后直接导入</font>
+<span class="line_num"><font color=#e8e8e8>00</font>21 </span>}
+</b></p></pre>
+</body>
+</html>

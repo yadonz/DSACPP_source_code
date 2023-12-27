@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>depq_smmh_insert.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#0000FF>void</font> SMMH<font color=#AA5500>&lt;</font>T&gt;::insert( T e ) { <font color=#008000>//insert e into an SMMH</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   Vector<font color=#AA5500>&lt;</font>T&gt;::insert(e); <font color=#008000>//增加一个单元</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   Rank k <font color=#AA5500>=</font> _size <font color=#AA5500>-</font> 1; <font color=#008000>//从末元素开始</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   <font color=#0000FF>while</font> (1) { <font color=#008000>//逐层上滤</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>      <font color=#0000FF>if</font> ( isRC(k) && (_elem<font color=#AA5500>[</font>k-1<font color=#AA5500>]</font> <font color=#AA5500>&gt;</font> _elem<font color=#AA5500>[</font>k]) ) <font color=#008000>//Property #0</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>         { _elem<font color=#AA5500>[</font>k<font color=#AA5500>]</font> <font color=#AA5500>=</font> _elem<font color=#AA5500>[</font>k-1]; k--; }
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>      <font color=#0000FF>if</font> ( !hasGP(k) ) <font color=#0000FF>break</font>;
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>      <font color=#0000FF>if</font>      ( e <font color=#AA5500>&lt;</font> _elem<font color=#AA5500>[</font>lp(k)] ) <font color=#008000>//Property #1</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>         { _elem<font color=#AA5500>[</font>k<font color=#AA5500>]</font> <font color=#AA5500>=</font> _elem<font color=#AA5500>[</font>lp(k)]; k <font color=#AA5500>=</font> lp(k); }
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>      <font color=#0000FF>else</font> <font color=#0000FF>if</font> ( _elem<font color=#AA5500>[</font>rp(k)] <font color=#AA5500>&lt;</font> e ) <font color=#008000>//Property #2</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>         { _elem<font color=#AA5500>[</font>k<font color=#AA5500>]</font> <font color=#AA5500>=</font> _elem<font color=#AA5500>[</font>rp(k)]; k <font color=#AA5500>=</font> rp(k); }
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>      <font color=#0000FF>else</font>
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>         <font color=#0000FF>break</font>;
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span>   }
+<span class="line_num"><font color=#e8e8e8>00</font>15 </span>   _elem<font color=#AA5500>[</font>k<font color=#AA5500>]</font> <font color=#AA5500>=</font> e; <font color=#008000>//新元素就位</font>
+<span class="line_num"><font color=#e8e8e8>00</font>16 </span>} <font color=#008000>//insert</font>
+</b></p></pre>
+</body>
+</html>

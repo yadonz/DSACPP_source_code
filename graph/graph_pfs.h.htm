@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>graph_pfs.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> Tv, <font color=#0000FF>typename</font> Te<font color=#AA5500>&gt;</font> <font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> PU<font color=#AA5500>&gt;</font> <font color=#008000>//优先级搜索（全图）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#0000FF>void</font> Graph<font color=#AA5500>&lt;</font>Tv, Te&gt;::pfs( Rank s, PU prioUpdater ) { <font color=#008000>// s &lt; n</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   reset(); <font color=#008000>//全图复位</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   <font color=#0000FF>for</font> ( Rank v <font color=#AA5500>=</font> s; v <font color=#AA5500>&lt;</font> s <font color=#AA5500>+</font> n; v++ ) <font color=#008000>//从s起顺次检查所有顶点</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>      <font color=#0000FF>if</font> ( UNDISCOVERED == status( v % n ) ) <font color=#008000>//一旦遇到尚未发现者</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>         PFS( v % n, prioUpdater ); <font color=#008000>//即从它出发启动一次PFS</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>} <font color=#008000>//如此可完整覆盖全图，且总体复杂度依然保持为O(n+e)</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> Tv, <font color=#0000FF>typename</font> Te<font color=#AA5500>&gt;</font> <font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> PU<font color=#AA5500>&gt;</font> <font color=#008000>//顶点类型、边类型、优先级更新器</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span><font color=#0000FF>void</font> Graph<font color=#AA5500>&lt;</font>Tv, Te&gt;::PFS( Rank v, PU prioUpdater ) { <font color=#008000>//优先级搜索（单个连通域）</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>   priority( v ) <font color=#AA5500>=</font> 0; status( v ) <font color=#AA5500>=</font> VISITED; <font color=#008000>//初始化，起点v加至PFS树中</font>
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>   <font color=#0000FF>while</font> ( 1 ) { <font color=#008000>//将下一顶点和边加至PFS树中</font>
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>      <font color=#0000FF>for</font> ( Rank u <font color=#AA5500>=</font> firstNbr( v ); <font color=#AA5500>-</font> 1 != u; u <font color=#AA5500>=</font> nextNbr( v, u ) ) <font color=#008000>//对v的每一个邻居u</font>
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span>         prioUpdater( <font color=#0000FF>this</font>, v, u ); <font color=#008000>//更新其优先级及其父亲</font>
+<span class="line_num"><font color=#e8e8e8>00</font>15 </span>      <font color=#0000FF>int</font> shortest <font color=#AA5500>=</font> INT_MAX;
+<span class="line_num"><font color=#e8e8e8>00</font>16 </span>      <font color=#0000FF>for</font> ( Rank u <font color=#AA5500>=</font> 0; u <font color=#AA5500>&lt;</font> n; u++ ) <font color=#008000>//从尚未加入遍历树的顶点中，选出下一个优先级</font>
+<span class="line_num"><font color=#e8e8e8>00</font>17 </span>         <font color=#0000FF>if</font> ( ( UNDISCOVERED == status( u ) ) && ( shortest <font color=#AA5500>&gt;</font> priority( u ) ) ) <font color=#008000>//最高的</font>
+<span class="line_num"><font color=#e8e8e8>00</font>18 </span>            { shortest <font color=#AA5500>=</font> priority( u ), v <font color=#AA5500>=</font> u; } <font color=#008000>//顶点v</font>
+<span class="line_num"><font color=#e8e8e8>00</font>19 </span>      <font color=#0000FF>if</font> ( shortest == INT_MAX ) <font color=#0000FF>break</font>; <font color=#008000>//直至所有顶点均已加入</font>
+<span class="line_num"><font color=#e8e8e8>00</font>20 </span>      status( v ) <font color=#AA5500>=</font> VISITED; type( parent( v ), v ) <font color=#AA5500>=</font> TREE; <font color=#008000>//将v加入遍历树</font>
+<span class="line_num"><font color=#e8e8e8>00</font>21 </span>   }
+<span class="line_num"><font color=#e8e8e8>00</font>22 </span>} <font color=#008000>//通过定义具体的优先级更新策略prioUpdater，即可实现不同的算法功能</font>
+</b></p></pre>
+</body>
+</html>

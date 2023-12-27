@@ -1,0 +1,16 @@
+<html>
+<head>
+<title>quadlist_insert.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> QNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> <font color=#008000>//将e作为p的后继、b的上邻插入Quadlist</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>Quadlist<font color=#AA5500>&lt;</font>T&gt;::insert( T <font color=#0000FF>const</font>& e, QNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> p, QNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> b )
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>{ _size++; <font color=#0000FF>return</font> p-<font color=#AA5500>&gt;</font>insert( e, b ); } <font color=#008000>//返回新节点位置（below = NULL）</font>
+</b></p></pre>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>pfc.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#008000>/******************************************************************************************</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#008000> * PFC编码使用的数据结构</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span><font color=#008000> ******************************************************************************************/</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span><font color=#800080>#include "BinTree/BinTree.h" </font><font color=#008000>//用BinTree实现PFC树</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span><font color=#0000FF>using</font> PFCTree <font color=#AA5500>=</font> BinTree<font color=#AA5500>&lt;</font><font color=#0000FF>char</font>&gt;; <font color=#008000>//PFC树</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span><font color=#800080>#include "Vector/Vector.h" </font><font color=#008000>//用Vector实现PFC森林</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span><font color=#0000FF>using</font> PFCForest <font color=#AA5500>=</font> Vector<font color=#AA5500>&lt;</font>PFCTree<font color=#AA5500>*</font>&gt;; <font color=#008000>//PFC森林</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span><font color=#800080>#include "Bitmap/Bitmap.h" </font><font color=#008000>//使用位图结构实现二进制编码串</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span><font color=#800080>#include "Skiplist/Skiplist.h" </font><font color=#008000>//引入Skiplist式词典结构实现</font>
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span><font color=#0000FF>using</font> PFCTable <font color=#AA5500>=</font> Skiplist<font color=#AA5500>&lt;</font><font color=#0000FF>char</font>, <font color=#0000FF>char</font><font color=#AA5500>*</font>&gt;; <font color=#008000>//PFC编码表，词条格式为：(key = 字符, value = 编码串)</font>
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span><font color=#800080>#define  N_CHAR  (0x80 - 0x20) </font><font color=#008000>//只考虑可打印字符</font>
+</b></p></pre>
+</body>
+</html>

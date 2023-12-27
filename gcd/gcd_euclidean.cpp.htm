@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>gcd_euclidean.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span>__int64 gcdEU_R ( __int64 a, __int64 b ) { <font color=#008000>//assert: 0 &lt;= min(a, b)</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   <font color=#0000FF>return</font> ( 0 == b ) ? a : gcdEU_R ( b, a % b );
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>}
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>__int64 gcdEU ( __int64 a, __int64 b ) { <font color=#008000>//assert: 0 &lt;= min(a, b)</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>   <font color=#0000FF>while</font> ( <font color=#0000FF>true</font> ) {
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>      <font color=#0000FF>if</font> ( 0 == a ) <font color=#0000FF>return</font> b;
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>      <font color=#0000FF>if</font> ( 0 == b ) <font color=#0000FF>return</font> a;
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>      <font color=#0000FF>if</font> ( a <font color=#AA5500>&gt;</font> b ) a %= b;
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>      <font color=#0000FF>else</font>       b %= a;
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>   }
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>}
+</b></p></pre>
+</body>
+</html>

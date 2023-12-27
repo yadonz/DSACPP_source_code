@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>depq_smmh.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#800080>#include "Vector/Vector.h" </font><font color=#008000>//借助多重继承机制，基于向量</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#800080>#include "DEPQ/DEPQ.h" </font><font color=#008000>//按照优先级队列ADT实现的</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#0000FF>class</font> SMMH : <font color=#0000FF>public</font> DEPQ<font color=#AA5500>&lt;</font>T&gt;, <font color=#0000FF>public</font> Vector<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> { <font color=#008000>//Symmetric Min-Max Heap</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span><font color=#0000FF>protected</font>:
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span><font color=#008000>   //void heapify ( Rank n ); //Floyd's heapification</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span><font color=#0000FF>public</font>:
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>   SMMH() { insert((T) -1); } <font color=#008000>//initialized with a dummy root</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>   <font color=#0000FF>void</font> insert( T ); <font color=#008000>//insert an element (duplicates accepted)</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>   T getMin() { <font color=#0000FF>return</font> _elem<font color=#AA5500>[</font>1]; }
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>   T getMax() { <font color=#0000FF>return</font> _size <font color=#AA5500>&lt;</font> 3 ? _elem<font color=#AA5500>[</font>1<font color=#AA5500>]</font> : _elem<font color=#AA5500>[</font>2]; }
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>   T delMin();
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>   T delMax();
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span>}; <font color=#008000>//SMMH</font>
+<span class="line_num"><font color=#e8e8e8>00</font>15 </span>
+</b></p></pre>
+</body>
+</html>

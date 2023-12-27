@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>readnumber.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>void</font> readNumber ( <font color=#0000FF>char</font><font color=#AA5500>*</font>& p, Stack<font color=#AA5500>&lt;</font><font color=#0000FF>double</font>&gt;& stk ) { <font color=#008000>//将起始于p的子串解析为数值，并存入操作数栈</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   stk.push ( ( <font color=#0000FF>double</font> ) ( <font color=#AA5500>*</font>p <font color=#AA5500>-</font> <font color=#FF00FF>'0'</font> ) ); <font color=#008000>//当前数位对应的数值进栈</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   <font color=#0000FF>while</font> ( isdigit ( <font color=#AA5500>*</font> ( ++p ) ) ) <font color=#008000>//若有后续数字（多位整数），则</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>      stk.push ( stk.pop() <font color=#AA5500>*</font> 10 <font color=#AA5500>+</font> ( <font color=#AA5500>*</font>p <font color=#AA5500>-</font> <font color=#FF00FF>'0'</font> ) ); <font color=#008000>//追加之（可能上溢）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   <font color=#0000FF>if</font> ( <font color=#FF00FF>'&#46;'</font> == <font color=#AA5500>*</font>p ) { <font color=#008000>//若还有小数部分</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>      <font color=#0000FF>double</font> fraction <font color=#AA5500>=</font> 1; <font color=#008000>//则</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>      <font color=#0000FF>while</font> ( isdigit ( <font color=#AA5500>*</font> ( ++p ) ) ) <font color=#008000>//逐位</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>         stk.push ( stk.pop() <font color=#AA5500>+</font> ( <font color=#AA5500>*</font>p <font color=#AA5500>-</font> <font color=#FF00FF>'0'</font> ) <font color=#AA5500>*</font> ( fraction /= 10 ) ); <font color=#008000>//加入（可能下溢）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>   }
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>}
+</b></p></pre>
+</body>
+</html>

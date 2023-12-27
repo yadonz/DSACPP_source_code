@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>primenlt.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span>Rank primeNLT( Rank c, Rank n, <font color=#0000FF>char</font><font color=#AA5500>*</font> file ) { <font color=#008000>//根据file文件中的记录，在[c, n)内取最小的素数</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   Bitmap B( file, n ); <font color=#008000>// file已经按位图格式记录了n以内的所有素数，因此只要</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   <font color=#0000FF>while</font> ( c <font color=#AA5500>&lt;</font> n ) <font color=#008000>//从c开始，逐位地</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>      <font color=#0000FF>if</font> ( B.test( c ) ) c++; <font color=#008000>//测试，即可</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>      <font color=#0000FF>else</font> <font color=#0000FF>return</font> c; <font color=#008000>//返回首个发现的素数</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>   <font color=#0000FF>return</font> c; <font color=#008000>//若没有这样的素数，返回n（实用中不能如此简化处理）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>}
+</b></p></pre>
+</body>
+</html>

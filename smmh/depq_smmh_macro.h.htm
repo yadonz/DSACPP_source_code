@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>depq_smmh_macro.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#800080>#define sib(i) ( 1 + ( ( (i) - 1 ) ^ 0x01 ) ) </font><font color=#008000>// ( (i) & 1 ? (i) + 1 : (i) - 1 ) //sibling</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#800080>#define lc(i)  ( 1 + ( ( i ) &lt;&lt; 1 ) ) </font><font color=#008000>//left child</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span><font color=#800080>#define rc(i)  ( ( 1 + ( i ) ) &lt;&lt; 1 ) </font><font color=#008000>//right child</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span><font color=#800080>#define ln(i)  ( lc( sib( i ) ) ) </font><font color=#008000>//left nephew</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span><font color=#800080>#define rn(i)  ( rc( sib( i ) ) ) </font><font color=#008000>//right nephew</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span><font color=#800080>#define isLC(i)   ( ( 0 &lt; (i) ) && (     1 & (i)   ) ) </font><font color=#008000>//left child</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span><font color=#800080>#define isRC(i)   ( ( 0 &lt; (i) ) && ( ! ( 1 & (i) ) ) ) </font><font color=#008000>//right child</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span><font color=#800080>#define hasGP(i)  ( 2 &lt; (i) ) </font><font color=#008000>//having grandparent</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span><font color=#800080>#define gp(i)  ( ( (i) - 3 ) &gt;&gt; 2 ) </font><font color=#008000>//grandparent</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span><font color=#800080>#define lp(i)  ( lc( gp( i ) ) ) </font><font color=#008000>//left parent = the left child of grandparent</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span><font color=#800080>#define rp(i)  ( rc( gp( i ) ) ) </font><font color=#008000>//right parent = the right child of grandparent</font>
+</b></p></pre>
+</body>
+</html>

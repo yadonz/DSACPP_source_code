@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>list_merge.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#008000>//有序列表的归并：当前列表中自p起的n个元素，与列表L中自q起的m个元素归并</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>ListNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> List<font color=#AA5500>&lt;</font>T&gt;::merge( ListNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> p, Rank n,
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>                    List<font color=#AA5500>&lt;</font>T&gt;& L, ListNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> q, Rank m ) {
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span><font color=#008000>// this.valid(p) && Rank(p) + n &lt;= size && this.sorted(p, n)</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span><font color=#008000>// L.valid(q) && Rank(q) + m &lt;= L._size && L.sorted(q, m)</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span><font color=#008000>// 注意：在被mergeSort()调用时，this == &L && Rank(p) + n = Rank(q)</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>   ListNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> pp <font color=#AA5500>=</font> p-<font color=#AA5500>&gt;</font>pred; <font color=#008000>//归并之后p可能不再指向首节点，故需先记忆，以便在返回前更新</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>   <font color=#0000FF>while</font> ( ( 0 <font color=#AA5500>&lt;</font> m ) && ( q != p ) ) <font color=#008000>//q尚未出界（或在mergeSort()中，p亦尚未出界）之前</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>      <font color=#0000FF>if</font> ( ( 0 <font color=#AA5500>&lt;</font> n ) && ( p-<font color=#AA5500>&gt;</font>data <font color=#AA5500>&lt;</font>= q-<font color=#AA5500>&gt;</font>data ) ) <font color=#008000>//若p尚未出界且v(p) &lt;= v(q)，则</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>         { p <font color=#AA5500>=</font> p-<font color=#AA5500>&gt;</font>succ; n--; } <font color=#008000>//p直接后移，即完成归入</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>      <font color=#0000FF>else</font> <font color=#008000>//否则，将q转移至p之前，以完成归入</font>
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>         { insert( L.remove( ( q <font color=#AA5500>=</font> q-<font color=#AA5500>&gt;</font>succ )<font color=#AA5500>-</font><font color=#AA5500>&gt;</font>pred ), p ); m--; }
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>   <font color=#0000FF>return</font> pp-<font color=#AA5500>&gt;</font>succ; <font color=#008000>//更新的首节点</font>
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span>}
+</b></p></pre>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>pfc_test.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#800080>#define _CRT_SECURE_NO_WARNINGS</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span><font color=#800080>#include&lt;iostream&gt;</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span><font color=#0000FF>using</font> <font color=#0000FF>namespace</font> std;
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span><font color=#800080>#include "_share/util.h"</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span><font color=#800080>#include "UniPrint/print.h"</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span><font color=#800080>#include "PFC.h"</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span><font color=#0000FF>extern</font> PFCForest<font color=#AA5500>*</font> initForest(); <font color=#008000>//创建编码树森林</font>
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span><font color=#0000FF>extern</font> PFCTree<font color=#AA5500>*</font> generateTree ( PFCForest<font color=#AA5500>*</font> ); <font color=#008000>//构造编码树</font>
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span><font color=#0000FF>extern</font> PFCTable<font color=#AA5500>*</font> generateTable ( PFCTree<font color=#AA5500>*</font> ); <font color=#008000>//由编码树转换为编码表</font>
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span><font color=#0000FF>extern</font> <font color=#0000FF>int</font> encode ( PFCTable<font color=#AA5500>*</font>, Bitmap&, <font color=#0000FF>char</font><font color=#AA5500>*</font> ); <font color=#008000>//明文的编码，返回编码长度</font>
+<span class="line_num"><font color=#e8e8e8>00</font>15 </span><font color=#0000FF>extern</font> <font color=#0000FF>void</font> decode ( PFCTree<font color=#AA5500>*</font>, Bitmap&, <font color=#0000FF>int</font> ); <font color=#008000>//二进制串的解码</font>
+</b></p></pre>
+</body>
+</html>

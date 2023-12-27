@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>crc_vector.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#800080>#include "vector/vector.h"</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#0000FF>void</font> crc ( Vector<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> & V ) { <font color=#008000>//统计向量的特征（所有元素之和）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   T crc <font color=#AA5500>=</font> 0; V.traverse ( Crc<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> ( crc ) ); <font color=#008000>//以crc为基本操作进行遍历</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   printf ( <font color=#FF00FF>"CRC ="</font> ); print ( crc ); printf ( <font color=#FF00FF>"\n"</font> ); <font color=#008000>//输出统计得到的特征</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>}
+</b></p></pre>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>bintree.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#800080>#include "BinNode.h" </font><font color=#008000>//引入二叉树节点类</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#0000FF>class</font> BinTree { <font color=#008000>//二叉树模板类</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span><font color=#0000FF>protected</font>:
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   Rank _size; BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> _root; <font color=#008000>//规模、根节点</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   <font color=#0000FF>virtual</font> Rank updateHeight( BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> x ); <font color=#008000>//更新节点x的高度</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>   <font color=#0000FF>void</font> updateHeightAbove( BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> x ); <font color=#008000>//更新节点x及其祖先的高度</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span><font color=#0000FF>public</font>:
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>   BinTree() : _size( 0 ), _root( NULL ) {} <font color=#008000>//构造函数</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>   ~BinTree() { <font color=#0000FF>if</font> ( 0 <font color=#AA5500>&lt;</font> _size ) remove( _root ); } <font color=#008000>//析构函数</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>   Rank size() <font color=#0000FF>const</font> { <font color=#0000FF>return</font> _size; } <font color=#008000>//规模</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>   <font color=#0000FF>bool</font> empty() <font color=#0000FF>const</font> { <font color=#0000FF>return</font> !_root; } <font color=#008000>//判空</font>
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>   BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> root() <font color=#0000FF>const</font> { <font color=#0000FF>return</font> _root; } <font color=#008000>//树根</font>
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>   BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> insert( T <font color=#0000FF>const</font>& ); <font color=#008000>//插入根节点</font>
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span>   BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> insert( T <font color=#0000FF>const</font>&, BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> ); <font color=#008000>//插入左孩子</font>
+<span class="line_num"><font color=#e8e8e8>00</font>15 </span>   BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> insert( BinNodePosi<font color=#AA5500>&lt;</font>T&gt;, T <font color=#0000FF>const</font>& ); <font color=#008000>//插入右孩子</font>
+<span class="line_num"><font color=#e8e8e8>00</font>16 </span>   BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> attach( BinTree<font color=#AA5500>&lt;</font>T&gt;<font color=#AA5500>*</font>&, BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> ); <font color=#008000>//接入左子树</font>
+<span class="line_num"><font color=#e8e8e8>00</font>17 </span>   BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> attach( BinNodePosi<font color=#AA5500>&lt;</font>T&gt;, BinTree<font color=#AA5500>&lt;</font>T&gt;<font color=#AA5500>*</font>& ); <font color=#008000>//接入右子树</font>
+<span class="line_num"><font color=#e8e8e8>00</font>18 </span>   Rank remove ( BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> ); <font color=#008000>//子树删除</font>
+<span class="line_num"><font color=#e8e8e8>00</font>19 </span>   BinTree<font color=#AA5500>&lt;</font>T&gt;<font color=#AA5500>*</font> secede ( BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> ); <font color=#008000>//子树分离</font>
+<span class="line_num"><font color=#e8e8e8>00</font>20 </span>   <font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> VST<font color=#AA5500>&gt;</font> <font color=#008000>//操作器</font>
+<span class="line_num"><font color=#e8e8e8>00</font>21 </span>   <font color=#0000FF>void</font> travLevel( VST& visit ) { <font color=#0000FF>if</font> ( _root ) _root-<font color=#AA5500>&gt;</font>travLevel( visit ); } <font color=#008000>//层次遍历</font>
+<span class="line_num"><font color=#e8e8e8>00</font>22 </span>   <font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> VST<font color=#AA5500>&gt;</font> <font color=#008000>//操作器</font>
+<span class="line_num"><font color=#e8e8e8>00</font>23 </span>   <font color=#0000FF>void</font> travPre( VST& visit ) { <font color=#0000FF>if</font> ( _root ) _root-<font color=#AA5500>&gt;</font>travPre( visit ); } <font color=#008000>//先序遍历</font>
+<span class="line_num"><font color=#e8e8e8>00</font>24 </span>   <font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> VST<font color=#AA5500>&gt;</font> <font color=#008000>//操作器</font>
+<span class="line_num"><font color=#e8e8e8>00</font>25 </span>   <font color=#0000FF>void</font> travIn( VST& visit ) { <font color=#0000FF>if</font> ( _root ) _root-<font color=#AA5500>&gt;</font>travIn( visit ); } <font color=#008000>//中序遍历</font>
+<span class="line_num"><font color=#e8e8e8>00</font>26 </span>   <font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> VST<font color=#AA5500>&gt;</font> <font color=#008000>//操作器</font>
+<span class="line_num"><font color=#e8e8e8>00</font>27 </span>   <font color=#0000FF>void</font> travPost( VST& visit ) { <font color=#0000FF>if</font> ( _root ) _root-<font color=#AA5500>&gt;</font>travPost( visit ); } <font color=#008000>//后序遍历</font>
+<span class="line_num"><font color=#e8e8e8>00</font>28 </span>   <font color=#0000FF>bool</font> <font color=#0000FF>operator</font><font color=#AA5500>&lt;</font>( BinTree<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> <font color=#0000FF>const</font>& t ) <font color=#008000>//比较器（其余自行补充）</font>
+<span class="line_num"><font color=#e8e8e8>00</font>29 </span>      { <font color=#0000FF>return</font> _root && t._root && lt( _root, t._root ); }
+<span class="line_num"><font color=#e8e8e8>00</font>30 </span>   <font color=#0000FF>bool</font> <font color=#0000FF>operator</font>==( BinTree<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> <font color=#0000FF>const</font>& t ) <font color=#008000>//判等器</font>
+<span class="line_num"><font color=#e8e8e8>00</font>31 </span>      { <font color=#0000FF>return</font> _root && t._root && ( _root == t._root ); }
+<span class="line_num"><font color=#e8e8e8>00</font>32 </span>}; <font color=#008000>//BinTree</font>
+</b></p></pre>
+</body>
+</html>

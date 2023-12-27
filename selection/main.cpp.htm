@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>main.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#800080>#include &lt;cstdio&gt;</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#800080>#include &lt;cstring&gt;</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span><font color=#800080>#include &lt;cstdlib&gt;</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span><font color=#800080>#include &lt;ctime&gt;</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span><font color=#800080>#include "_share/util.h"</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span><font color=#800080>#include "UniPrint/print.h"</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span><font color=#800080>#include "vector/vector.h"</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span><font color=#800080>#include "quickSelect.h"</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span><font color=#0000FF>int</font> main( <font color=#0000FF>int</font> argc, <font color=#0000FF>char</font><font color=#AA5500>*</font> argv[] ) { <font color=#008000>//基于快速划分的k选取算法测试</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>   <font color=#0000FF>if</font> ( 2 <font color=#AA5500>&gt;</font> argc ) { printf ( <font color=#FF00FF>"Usage: %s &lt;n&gt;\a\a\n"</font>, argv<font color=#AA5500>[</font>0<font color=#AA5500>]</font> ); <font color=#0000FF>return</font> 1; }
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>   Rank n <font color=#AA5500>=</font> atoi( argv<font color=#AA5500>[</font>1<font color=#AA5500>]</font> );
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>   <font color=#0000FF>if</font> ( n <font color=#AA5500>&lt;</font> 1 ) { printf ( <font color=#FF00FF>"Invalid arguments\a\a\n"</font> ); <font color=#0000FF>return</font> 1; }
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span>   srand((<font color=#0000FF>unsigned</font> <font color=#0000FF>int</font>)time(NULL)); <font color=#008000>//随机种子</font>
+<span class="line_num"><font color=#e8e8e8>00</font>15 </span><font color=#008000>   //srand( 31415926 ); //固定种子（假种子，调试用）</font>
+<span class="line_num"><font color=#e8e8e8>00</font>16 </span>   <font color=#0000FF>for</font> ( Rank k <font color=#AA5500>=</font> 0; k <font color=#AA5500>&lt;</font> n; k++ ) {
+<span class="line_num"><font color=#e8e8e8>00</font>17 </span>      Vector<font color=#AA5500>&lt;</font><font color=#0000FF>int</font><font color=#AA5500>&gt;</font> A;
+<span class="line_num"><font color=#e8e8e8>00</font>18 </span>      <font color=#0000FF>while</font> ( A.size() <font color=#AA5500>&lt;</font> n ) <font color=#008000>// create a random vector</font>
+<span class="line_num"><font color=#e8e8e8>00</font>19 </span>         A.insert( rand() % n );
+<span class="line_num"><font color=#e8e8e8>00</font>20 </span>      quickSelect( A, k ); <font color=#008000>// find k-th element</font>
+<span class="line_num"><font color=#e8e8e8>00</font>21 </span>      Vector<font color=#AA5500>&lt;</font><font color=#0000FF>int</font><font color=#AA5500>&gt;</font> B( A ); B.sort(); <font color=#008000>//compared with the sorted copy</font>
+<span class="line_num"><font color=#e8e8e8>00</font>22 </span>      printf( ( A<font color=#AA5500>[</font>k<font color=#AA5500>]</font> == B<font color=#AA5500>[</font>k<font color=#AA5500>]</font> ) ? <font color=#FF00FF>" k =%4d OK\n"</font> : <font color=#FF00FF>" k =%4d Failed\n\n\n"</font>, k );
+<span class="line_num"><font color=#e8e8e8>00</font>23 </span>   }
+<span class="line_num"><font color=#e8e8e8>00</font>24 </span>   <font color=#0000FF>return</font> 0;
+<span class="line_num"><font color=#e8e8e8>00</font>25 </span>}
+</b></p></pre>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>display.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#800080>#include "nest_stack/nest.h"</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span><font color=#008000>/******************************************************************************************</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span><font color=#008000> * 显示表达式片段exp[lo, hi]，与原表达式对齐</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span><font color=#008000> ******************************************************************************************/</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span><font color=#0000FF>void</font> displaySubstring ( <font color=#0000FF>const</font> <font color=#0000FF>char</font> exp[], Rank lo, Rank hi ) {
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>   <font color=#0000FF>for</font> ( Rank i <font color=#AA5500>=</font> 0; i <font color=#AA5500>&lt;</font> lo; i++ ) printf ( <font color=#FF00FF>" "</font> );
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>   <font color=#0000FF>for</font> ( Rank i <font color=#AA5500>=</font> lo; i <font color=#AA5500>&lt;</font>= hi; i++ ) printf ( <font color=#FF00FF>"%c"</font>, exp<font color=#AA5500>[</font>i<font color=#AA5500>]</font> );
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>   printf ( <font color=#FF00FF>"\n"</font> );
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>}
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span><font color=#008000>/******************************************************************************************</font>
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span><font color=#008000> * 显示表达式扫描进度</font>
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span><font color=#008000> ******************************************************************************************/</font>
+<span class="line_num"><font color=#e8e8e8>00</font>15 </span><font color=#0000FF>void</font> displayProgress ( <font color=#0000FF>const</font> <font color=#0000FF>char</font> exp[], Rank i, Stack<font color=#AA5500>&lt;</font><font color=#0000FF>char</font><font color=#AA5500>&gt;</font> S ) {
+<span class="line_num"><font color=#e8e8e8>00</font>16 </span><font color=#008000>// 表达式</font>
+<span class="line_num"><font color=#e8e8e8>00</font>17 </span>   system ( <font color=#FF00FF>"cls"</font> );
+<span class="line_num"><font color=#e8e8e8>00</font>18 </span>   printf ( <font color=#FF00FF>"\n%s\n"</font>, exp );
+<span class="line_num"><font color=#e8e8e8>00</font>19 </span>   <font color=#0000FF>for</font> ( Rank j <font color=#AA5500>=</font> 0; j <font color=#AA5500>&lt;</font> i; j++ )   printf ( <font color=#FF00FF>"-"</font> );
+<span class="line_num"><font color=#e8e8e8>00</font>20 </span>   printf ( <font color=#FF00FF>"^\n\n\n"</font> );
+<span class="line_num"><font color=#e8e8e8>00</font>21 </span><font color=#008000>// 栈</font>
+<span class="line_num"><font color=#e8e8e8>00</font>22 </span>   print ( S ); getchar();
+<span class="line_num"><font color=#e8e8e8>00</font>23 </span>}
+</b></p></pre>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>power2-1-i.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span>__int64 power2_I ( <font color=#0000FF>int</font> n ) { <font color=#008000>//幂函数2^n算法（优化迭代版），n &gt;= 0</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   __int64 pow <font color=#AA5500>=</font> 1; <font color=#008000>//O(1)：累积器初始化为2^0</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   __int64 p <font color=#AA5500>=</font> 2; <font color=#008000>//O(1)：累乘项初始化为2</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   <font color=#0000FF>while</font> ( 0 <font color=#AA5500>&lt;</font> n ) { <font color=#008000>//O(logn)：迭代log(n)轮，每轮都</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>      <font color=#0000FF>if</font> ( n & 1 ) <font color=#008000>//O(1)：根据当前比特位是否为1，决定是否</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>         pow <font color=#AA5500>*</font>= p; <font color=#008000>//O(1)：将当前累乘项计入累积器</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>      n &gt;&gt;= 1; <font color=#008000>//O(1)：指数减半</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>      p <font color=#AA5500>*</font>= p; <font color=#008000>//O(1)：累乘项自乘</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>   }
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>   <font color=#0000FF>return</font> pow; <font color=#008000>//O(1)：返回累积器</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>} <font color=#008000>//O(logn) = O(r)，r为输入指数n的比特位数</font>
+</b></p></pre>
+</body>
+</html>

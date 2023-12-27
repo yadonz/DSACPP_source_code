@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>list_search.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#008000>//在有序列表内节点p（可能是trailer）的n个（真）前驱中，找到不大于e的最后者</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>ListNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> List<font color=#AA5500>&lt;</font>T&gt;::search( T <font color=#0000FF>const</font>& e, Rank n, ListNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> p ) <font color=#0000FF>const</font> {
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   <font color=#0000FF>do</font> { <font color=#008000>// 0 &lt;= n &lt;= Rank(p) &lt; _size</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>      p <font color=#AA5500>=</font> p-<font color=#AA5500>&gt;</font>pred; n--;  <font color=#008000>//从右向左</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   } <font color=#0000FF>while</font> ( ( -1 != n ) && ( e <font color=#AA5500>&lt;</font> p-<font color=#AA5500>&gt;</font>data ) ); <font color=#008000>//逐个比较，直至命中或越界</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>   <font color=#0000FF>return</font> p; <font color=#008000>//返回查找终止的位置</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>} <font color=#008000>//失败时，返回区间左边界的前驱（可能是header）——调用者可通过valid()判断成功与否</font>
+</b></p></pre>
+</body>
+</html>

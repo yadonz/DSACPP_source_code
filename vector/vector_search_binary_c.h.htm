@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>vector_search_binary_c.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#008000>//二分查找算法（版本C）：在有序向量的区间[lo, hi)内查找元素e，0 &lt;= lo &lt;= hi &lt;= _size</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#0000FF>static</font> Rank binSearch( T<font color=#AA5500>*</font> S, T <font color=#0000FF>const</font>& e, Rank lo, Rank hi ) {
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   <font color=#0000FF>while</font> ( lo <font color=#AA5500>&lt;</font> hi ) { <font color=#008000>//每步迭代仅需做一次比较判断，有两个分支</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>      Rank mi <font color=#AA5500>=</font> ( lo <font color=#AA5500>+</font> hi ) &gt;&gt; 1; <font color=#008000>//以中点为轴点（区间宽度折半，等效于其数值表示的右移一位）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>      ( e <font color=#AA5500>&lt;</font> S<font color=#AA5500>[</font>mi<font color=#AA5500>]</font> ) ? hi <font color=#AA5500>=</font> mi : lo <font color=#AA5500>=</font> mi <font color=#AA5500>+</font> 1; <font color=#008000>//经比较后确定深入[lo, mi)或(mi, hi)</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>   } <font color=#008000>//成功查找不能提前终止</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>   <font color=#0000FF>return</font> lo <font color=#AA5500>-</font> 1; <font color=#008000>//至此，[lo]为大于e的最小者，故[lo-1]即为不大于e的最大者</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>} <font color=#008000>//有多个命中元素时，返回最靠后者；查找失败时，返回失败的位置</font>
+</b></p></pre>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>vector_merge.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#008000>//对各自有序的[lo, mi)和[mi, hi)做归并</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#0000FF>void</font> Vector<font color=#AA5500>&lt;</font>T&gt;::merge( Rank lo, Rank mi, Rank hi ) { <font color=#008000>// lo &lt; mi &lt; hi</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   Rank i <font color=#AA5500>=</font> 0; T<font color=#AA5500>*</font> A <font color=#AA5500>=</font> _elem <font color=#AA5500>+</font> lo; <font color=#008000>//合并后的有序向量A[0, hi - lo) = _elem[lo, hi)</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   Rank j <font color=#AA5500>=</font> 0, lb <font color=#AA5500>=</font> mi <font color=#AA5500>-</font> lo; T<font color=#AA5500>*</font> B <font color=#AA5500>=</font> <font color=#0000FF>new</font> T<font color=#AA5500>[</font>lb]; <font color=#008000>//前子向量B[0, lb) &lt;-- _elem[lo, mi)</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   <font color=#0000FF>for</font> ( Rank i <font color=#AA5500>=</font> 0; i <font color=#AA5500>&lt;</font> lb; i++ ) B<font color=#AA5500>[</font>i<font color=#AA5500>]</font> <font color=#AA5500>=</font> A<font color=#AA5500>[</font>i]; <font color=#008000>//复制出A的前缀</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>   Rank k <font color=#AA5500>=</font> 0, lc <font color=#AA5500>=</font> hi <font color=#AA5500>-</font> mi; T<font color=#AA5500>*</font> C <font color=#AA5500>=</font> _elem <font color=#AA5500>+</font> mi; <font color=#008000>//后缀C[0, lc) = _elem[mi, hi)就地</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>   <font color=#0000FF>while</font> ( ( j <font color=#AA5500>&lt;</font> lb ) && ( k <font color=#AA5500>&lt;</font> lc ) ) <font color=#008000>//反复地比较B、C的首元素</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>      A<font color=#AA5500>[</font>i++] <font color=#AA5500>=</font> ( B<font color=#AA5500>[</font>j<font color=#AA5500>]</font> <font color=#AA5500>&lt;</font>= C<font color=#AA5500>[</font>k<font color=#AA5500>]</font> ) ? B<font color=#AA5500>[</font>j++] : C<font color=#AA5500>[</font>k++]; <font color=#008000>//将更小者归入A中</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>   <font color=#0000FF>while</font> ( j <font color=#AA5500>&lt;</font> lb ) <font color=#008000>//若C先耗尽，则</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>      A<font color=#AA5500>[</font>i++] <font color=#AA5500>=</font> B<font color=#AA5500>[</font>j++]; <font color=#008000>//将B残余的后缀归入A中——若B先耗尽呢？</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>   <font color=#0000FF>delete</font>[] B; <font color=#008000>//释放临时空间：mergeSort()过程中，如何避免此类反复的new/delete？</font>
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>}
+</b></p></pre>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>graph_bfs.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> Tv, <font color=#0000FF>typename</font> Te<font color=#AA5500>&gt;</font> <font color=#008000>//广度优先搜索BFS算法（全图）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#0000FF>void</font> Graph<font color=#AA5500>&lt;</font>Tv, Te&gt;::bfs( Rank s ) { <font color=#008000>// s &lt; n</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   reset(); Rank dClock <font color=#AA5500>=</font> 0; <font color=#008000>//全图复位</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   <font color=#0000FF>for</font> ( Rank v <font color=#AA5500>=</font> s; v <font color=#AA5500>&lt;</font> s <font color=#AA5500>+</font> n; v++ ) <font color=#008000>//从s起顺次检查所有顶点</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>      <font color=#0000FF>if</font> ( UNDISCOVERED == status( v % n ) ) <font color=#008000>//一旦遇到尚未发现者</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>         BFS( v % n, dClock ); <font color=#008000>//即从它出发启动一次BFS</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>} <font color=#008000>//如此可完整覆盖全图，且总体复杂度依然保持为O(n+e)</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> Tv, <font color=#0000FF>typename</font> Te<font color=#AA5500>&gt;</font> <font color=#008000>//广度优先搜索BFS算法（单个连通域）</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span><font color=#0000FF>void</font> Graph<font color=#AA5500>&lt;</font>Tv, Te&gt;::BFS( Rank v, Rank& dClock ) { <font color=#008000>// v &lt; n</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>   Queue<font color=#AA5500>&lt;</font>Rank<font color=#AA5500>&gt;</font> Q; status( v ) <font color=#AA5500>=</font> DISCOVERED; Q.enqueue( v ); dTime( v ) <font color=#AA5500>=</font> dClock++; <font color=#008000>//起点入队</font>
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>   <font color=#0000FF>for</font> ( Rank fClock <font color=#AA5500>=</font> 0; !Q.empty(); ) { <font color=#008000>//在Q变空之前，反复地</font>
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>      <font color=#0000FF>if</font> ( dTime( v ) <font color=#AA5500>&lt;</font> dTime( Q.front() ) ) <font color=#008000>//dTime的增加，意味着开启新的一代，因此</font>
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span>         dClock++, fClock <font color=#AA5500>=</font> 0; <font color=#008000>//dTime递增，fTime复位</font>
+<span class="line_num"><font color=#e8e8e8>00</font>15 </span>      v <font color=#AA5500>=</font> Q.dequeue(); <font color=#008000>//取出首顶点v，并</font>
+<span class="line_num"><font color=#e8e8e8>00</font>16 </span>      <font color=#0000FF>for</font> ( Rank u <font color=#AA5500>=</font> firstNbr( v ); -1 != u; u <font color=#AA5500>=</font> nextNbr( v, u ) ) <font color=#008000>//考查v的每一个邻居u</font>
+<span class="line_num"><font color=#e8e8e8>00</font>17 </span>         <font color=#0000FF>if</font> ( UNDISCOVERED == status( u ) ) { <font color=#008000>//若u尚未被发现，则发现之</font>
+<span class="line_num"><font color=#e8e8e8>00</font>18 </span>            status( u ) <font color=#AA5500>=</font> DISCOVERED; Q.enqueue( u ); dTime( u ) <font color=#AA5500>=</font> dClock;
+<span class="line_num"><font color=#e8e8e8>00</font>19 </span>            type( v, u ) <font color=#AA5500>=</font> TREE; parent( u ) <font color=#AA5500>=</font> v; <font color=#008000>//引入树边，拓展BFS树</font>
+<span class="line_num"><font color=#e8e8e8>00</font>20 </span>         } <font color=#0000FF>else</font> <font color=#008000>//若u已被发现，或者甚至已访问完毕，则</font>
+<span class="line_num"><font color=#e8e8e8>00</font>21 </span>            type( v, u ) <font color=#AA5500>=</font> CROSS; <font color=#008000>//将(v, u)归类于跨边</font>
+<span class="line_num"><font color=#e8e8e8>00</font>22 </span>      status( v ) <font color=#AA5500>=</font> VISITED; fTime( v ) <font color=#AA5500>=</font> fClock++; <font color=#008000>//至此，v访问完毕</font>
+<span class="line_num"><font color=#e8e8e8>00</font>23 </span>   } <font color=#008000>//for</font>
+<span class="line_num"><font color=#e8e8e8>00</font>24 </span>} <font color=#008000>//BFS</font>
+</b></p></pre>
+</body>
+</html>

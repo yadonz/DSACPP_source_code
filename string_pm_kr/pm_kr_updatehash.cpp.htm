@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>pm_kr_updatehash.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#008000>// 子串指纹快速更新算法</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#0000FF>void</font> updateHash ( HashCode& hashT, <font color=#0000FF>char</font><font color=#AA5500>*</font> T, size_t m, size_t k, HashCode Dm ) {
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   hashT <font color=#AA5500>=</font> ( hashT <font color=#AA5500>-</font> DIGIT ( T, k <font color=#AA5500>-</font> 1 ) <font color=#AA5500>*</font> Dm ) % M; <font color=#008000>//在前一指纹基础上，去除首位T[k - 1]</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   hashT <font color=#AA5500>=</font> ( hashT <font color=#AA5500>*</font> R <font color=#AA5500>+</font> DIGIT ( T, k <font color=#AA5500>+</font> m <font color=#AA5500>-</font> 1 ) ) % M; <font color=#008000>//添加末位T[k + m - 1]</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   <font color=#0000FF>if</font> ( 0 <font color=#AA5500>&gt;</font> hashT ) hashT += M; <font color=#008000>//确保散列码落在合法区间内</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>}
+</b></p></pre>
+</body>
+</html>

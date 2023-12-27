@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>hashtable_hashcode.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>static</font> Rank hashCode( <font color=#0000FF>char</font> c ) { <font color=#0000FF>return</font> (Rank)c; } <font color=#008000>//字符</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#0000FF>static</font> Rank hashCode( <font color=#0000FF>int</font> k ) { <font color=#0000FF>return</font> (Rank)k; } <font color=#008000>//整数以及长长整数</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span><font color=#0000FF>static</font> Rank hashCode( <font color=#0000FF>long</font> <font color=#0000FF>long</font> i ) { <font color=#0000FF>return</font> (Rank)( ( i &gt;&gt; 32 ) <font color=#AA5500>+</font> (<font color=#0000FF>int</font>)i ); }
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span><font color=#0000FF>static</font> Rank hashCode( <font color=#0000FF>char</font> s[] ) { <font color=#008000>//生成字符串的循环移位散列码（cyclic shift hash code）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   Rank n <font color=#AA5500>=</font> strlen( s ); Rank h <font color=#AA5500>=</font> 0; <font color=#008000>//散列码</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>   <font color=#0000FF>for</font> ( Rank i <font color=#AA5500>=</font> 0; i <font color=#AA5500>&lt;</font> n; i++ ) { <font color=#008000>//自左向右，逐个处理每一字符</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>      h <font color=#AA5500>=</font> ( h <font color=#AA5500>&lt;</font><font color=#AA5500>&lt;</font> 5 ) | ( h &gt;&gt; 27 ); <font color=#008000>//左移5位即乘以32；右移27位作为扰动（通常与最高位有关）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>      h += s<font color=#AA5500>[</font>i]; <font color=#008000>//累计上当前字符的贡献</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>   }
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>   <font color=#0000FF>return</font> h; <font color=#008000>//如此所得的散列码，实际上可理解为近似的“多项式散列码”</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>} <font color=#008000>//32接近于26，故此方法针对于英文字符串；对于中文等其他字符串，需做相应的调整</font>
+</b></p></pre>
+</body>
+</html>

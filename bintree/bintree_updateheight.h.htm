@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>bintree_updateheight.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> Rank BinTree<font color=#AA5500>&lt;</font>T&gt;::updateHeight( BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> x ) <font color=#008000>//更新节点x高度</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   { <font color=#0000FF>return</font> x-<font color=#AA5500>&gt;</font>height <font color=#AA5500>=</font> 1 <font color=#AA5500>+</font> max( stature( x-<font color=#AA5500>&gt;</font>lc ), stature( x-<font color=#AA5500>&gt;</font>rc ) ); } <font color=#008000>//具体规则，因树而异</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#0000FF>void</font> BinTree<font color=#AA5500>&lt;</font>T&gt;::updateHeightAbove( BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> x ) <font color=#008000>//更新高度</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   { <font color=#0000FF>while</font> ( x ) { updateHeight( x ); x <font color=#AA5500>=</font> x-<font color=#AA5500>&gt;</font>parent; } } <font color=#008000>//从x出发，覆盖历代祖先。可优化</font>
+</b></p></pre>
+</body>
+</html>

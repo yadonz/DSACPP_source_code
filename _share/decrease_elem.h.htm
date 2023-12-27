@@ -1,0 +1,15 @@
+<html>
+<head>
+<title>decrease_elem.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#0000FF>struct</font> Decrease <font color=#008000>//函数对象：递减一个T类对象</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   {  <font color=#0000FF>virtual</font> <font color=#0000FF>void</font> <font color=#0000FF>operator</font>() ( T& e ) { e--; }  }; <font color=#008000>//假设T可直接递减或已重载--</font>
+</b></p></pre>
+</body>
+</html>

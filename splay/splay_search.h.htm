@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>splay_search.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> BinNodePosi<font color=#AA5500>&lt;</font>T&gt;& Splay<font color=#AA5500>&lt;</font>T&gt;::search( <font color=#0000FF>const</font> T& e ) { <font color=#008000>//在伸展树中查找e</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> p <font color=#AA5500>=</font> BST<font color=#AA5500>&lt;</font>T&gt;::search( e );
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   _root <font color=#AA5500>=</font> splay( p ? p : _hot ); <font color=#008000>//将最后一个被访问的节点伸展至根</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   <font color=#0000FF>return</font> _root;
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>} <font color=#008000>//与其它BST不同，无论查找成功与否，_root都指向最后被访问的节点</font>
+</b></p></pre>
+</body>
+</html>

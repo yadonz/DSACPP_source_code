@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>lcsi.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#800080>#include &lt;algorithm&gt;</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#0000FF>using</font> <font color=#0000FF>namespace</font> std;
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span><font color=#0000FF>unsigned</font> <font color=#0000FF>int</font> lcsIteration(<font color=#0000FF>char</font> <font color=#0000FF>const</font> <font color=#AA5500>*</font> A, <font color=#0000FF>int</font> n, <font color=#0000FF>char</font> <font color=#0000FF>const</font> <font color=#AA5500>*</font> B, <font color=#0000FF>int</font> m) {
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   <font color=#0000FF>if</font> (n <font color=#AA5500>&lt;</font> m) { swap(A, B); swap(n, m); } <font color=#008000>//make sure m &lt;= n</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>   <font color=#0000FF>unsigned</font> <font color=#0000FF>int</font><font color=#AA5500>*</font> lcs1 <font color=#AA5500>=</font> <font color=#0000FF>new</font> <font color=#0000FF>unsigned</font> <font color=#0000FF>int</font><font color=#AA5500>[</font>m<font color=#AA5500>+</font>1]; <font color=#008000>//the current two rows are</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>   <font color=#0000FF>unsigned</font> <font color=#0000FF>int</font><font color=#AA5500>*</font> lcs2 <font color=#AA5500>=</font> <font color=#0000FF>new</font> <font color=#0000FF>unsigned</font> <font color=#0000FF>int</font><font color=#AA5500>[</font>m<font color=#AA5500>+</font>1]; <font color=#008000>//buffered alternatively</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>   memset(lcs1, 0x00, <font color=#0000FF>sizeof</font>(<font color=#0000FF>unsigned</font> <font color=#0000FF>int</font>) <font color=#AA5500>*</font> (m<font color=#AA5500>+</font>1)); lcs2<font color=#AA5500>[</font>0<font color=#AA5500>]</font> <font color=#AA5500>=</font> 0;
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>   <font color=#0000FF>for</font> (<font color=#0000FF>int</font> i <font color=#AA5500>=</font> 0; i <font color=#AA5500>&lt;</font> n; swap(lcs1, lcs2), i++)
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>      <font color=#0000FF>for</font> (<font color=#0000FF>int</font> j <font color=#AA5500>=</font> 0; j <font color=#AA5500>&lt;</font> m; j++)
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>         lcs2<font color=#AA5500>[</font>j <font color=#AA5500>+</font> 1<font color=#AA5500>]</font> <font color=#AA5500>=</font> (A<font color=#AA5500>[</font>i<font color=#AA5500>]</font> == B<font color=#AA5500>[</font>j]) ? 1 <font color=#AA5500>+</font> lcs1<font color=#AA5500>[</font>j<font color=#AA5500>]</font> : max(lcs2<font color=#AA5500>[</font>j], lcs1<font color=#AA5500>[</font>j<font color=#AA5500>+</font>1]);
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>   <font color=#0000FF>unsigned</font> <font color=#0000FF>int</font> solu <font color=#AA5500>=</font> lcs1<font color=#AA5500>[</font>m];
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>   <font color=#0000FF>delete</font>[] lcs1;
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span>   <font color=#0000FF>delete</font>[] lcs2;
+<span class="line_num"><font color=#e8e8e8>00</font>15 </span>   <font color=#0000FF>return</font> solu;
+<span class="line_num"><font color=#e8e8e8>00</font>16 </span>}
+</b></p></pre>
+</body>
+</html>

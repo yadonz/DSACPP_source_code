@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>reverse-recursive.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>void</font> reverse ( <font color=#0000FF>int</font><font color=#AA5500>*</font> A, <font color=#0000FF>int</font> lo, <font color=#0000FF>int</font> hi ) { <font color=#008000>//数组倒置（多递归基递归版）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   <font color=#0000FF>if</font> ( lo <font color=#AA5500>&lt;</font> hi ) {
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>      swap ( A<font color=#AA5500>[</font>lo], A<font color=#AA5500>[</font>hi<font color=#AA5500>]</font> ); <font color=#008000>//交换A[lo]和A[hi]</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>      reverse ( A, lo <font color=#AA5500>+</font> 1, hi <font color=#AA5500>-</font> 1 ); <font color=#008000>//递归倒置A(lo, hi)</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   } <font color=#008000>//else隐含了两种递归基</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>} <font color=#008000>//O(hi - lo + 1)</font>
+</b></p></pre>
+</body>
+</html>

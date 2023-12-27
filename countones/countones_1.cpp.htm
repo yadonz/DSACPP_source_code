@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>countones_1.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>int</font> countOnes1 ( <font color=#0000FF>unsigned</font> <font color=#0000FF>int</font> n ) { <font color=#008000>//统计整数二进制展开中数位1的总数：O(ones)正比于数位1的总数</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   <font color=#0000FF>int</font> ones <font color=#AA5500>=</font> 0; <font color=#008000>//计数器复位</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   <font color=#0000FF>while</font> ( 0 <font color=#AA5500>&lt;</font> n ) { <font color=#008000>//在n缩减至0之前，反复地</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>      ones++; <font color=#008000>//计数（至少有一位为1）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>      n &= n <font color=#AA5500>-</font> 1; <font color=#008000>//清除当前最靠右的1</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>   }
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>   <font color=#0000FF>return</font> ones; <font color=#008000>//返回计数</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>} <font color=#008000>//等效于glibc的内置函数int __builtin_popcount (unsigned int n)</font>
+</b></p></pre>
+</body>
+</html>

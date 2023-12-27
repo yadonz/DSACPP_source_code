@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>splay_splay.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> NodePosi<font color=#AA5500>&gt;</font> <font color=#0000FF>inline</font> <font color=#008000>//在节点*p与*lc（可能为空）之间建立父（左）子关系</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#0000FF>void</font> attachAsLC( NodePosi lc, NodePosi p ) { p-<font color=#AA5500>&gt;</font>lc <font color=#AA5500>=</font> lc; <font color=#0000FF>if</font> ( lc ) lc-<font color=#AA5500>&gt;</font>parent <font color=#AA5500>=</font> p; }
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> NodePosi<font color=#AA5500>&gt;</font> <font color=#0000FF>inline</font> <font color=#008000>//在节点*p与*rc（可能为空）之间建立父（右）子关系</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span><font color=#0000FF>void</font> attachAsRC( NodePosi p, NodePosi rc ) { p-<font color=#AA5500>&gt;</font>rc <font color=#AA5500>=</font> rc; <font color=#0000FF>if</font> ( rc ) rc-<font color=#AA5500>&gt;</font>parent <font color=#AA5500>=</font> p; }
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#008000>//Splay树伸展算法：从节点v出发逐层伸展</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> Splay<font color=#AA5500>&lt;</font>T&gt;::splay( BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> v ) { <font color=#008000>// v为因最近访问而需伸展的节点位置</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>   <font color=#0000FF>if</font> ( !v ) <font color=#0000FF>return</font> NULL; BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> p; BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> g; <font color=#008000>//*v的父亲与祖父</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>   <font color=#0000FF>while</font> ( ( p <font color=#AA5500>=</font> v-<font color=#AA5500>&gt;</font>parent ) && ( g <font color=#AA5500>=</font> p-<font color=#AA5500>&gt;</font>parent ) ) { <font color=#008000>//自下而上，反复对*v做双层伸展</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>      BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> gg <font color=#AA5500>=</font> g-<font color=#AA5500>&gt;</font>parent; <font color=#008000>//每轮之后*v都以原曾祖父（great-grand parent）为父</font>
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>      <font color=#0000FF>if</font> ( IsLChild( <font color=#AA5500>*</font>v ) )
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>         <font color=#0000FF>if</font> ( IsLChild( <font color=#AA5500>*</font>p ) ) { <font color=#008000>// zig-zig</font>
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span>            attachAsLC( p-<font color=#AA5500>&gt;</font>rc, g ); attachAsLC( v-<font color=#AA5500>&gt;</font>rc, p );
+<span class="line_num"><font color=#e8e8e8>00</font>15 </span>            attachAsRC( p, g ); attachAsRC( v, p );
+<span class="line_num"><font color=#e8e8e8>00</font>16 </span>         } <font color=#0000FF>else</font> { <font color=#008000>//zig-zag</font>
+<span class="line_num"><font color=#e8e8e8>00</font>17 </span>            attachAsLC( v-<font color=#AA5500>&gt;</font>rc, p ); attachAsRC( g, v-<font color=#AA5500>&gt;</font>lc );
+<span class="line_num"><font color=#e8e8e8>00</font>18 </span>            attachAsLC( g, v ); attachAsRC( v, p );
+<span class="line_num"><font color=#e8e8e8>00</font>19 </span>         }
+<span class="line_num"><font color=#e8e8e8>00</font>20 </span>      <font color=#0000FF>else</font>
+<span class="line_num"><font color=#e8e8e8>00</font>21 </span>         <font color=#0000FF>if</font> ( IsRChild ( <font color=#AA5500>*</font>p ) ) { <font color=#008000>//zag-zag</font>
+<span class="line_num"><font color=#e8e8e8>00</font>22 </span>            attachAsRC( g, p-<font color=#AA5500>&gt;</font>lc ); attachAsRC( p, v-<font color=#AA5500>&gt;</font>lc );
+<span class="line_num"><font color=#e8e8e8>00</font>23 </span>            attachAsLC( g, p ); attachAsLC( p, v );
+<span class="line_num"><font color=#e8e8e8>00</font>24 </span>         } <font color=#0000FF>else</font> { <font color=#008000>//zag-zig</font>
+<span class="line_num"><font color=#e8e8e8>00</font>25 </span>            attachAsRC( p, v-<font color=#AA5500>&gt;</font>lc ); attachAsLC( v-<font color=#AA5500>&gt;</font>rc, g );
+<span class="line_num"><font color=#e8e8e8>00</font>26 </span>            attachAsRC( v, g ); attachAsLC( p, v );
+<span class="line_num"><font color=#e8e8e8>00</font>27 </span>         }
+<span class="line_num"><font color=#e8e8e8>00</font>28 </span>      <font color=#0000FF>if</font> ( !gg ) v-<font color=#AA5500>&gt;</font>parent <font color=#AA5500>=</font> NULL; <font color=#008000>//若*v原先的曾祖父*gg不存在，则*v现在应为树根</font>
+<span class="line_num"><font color=#e8e8e8>00</font>29 </span>      <font color=#0000FF>else</font> <font color=#008000>//否则，*gg此后应该以*v作为左或右孩子</font>
+<span class="line_num"><font color=#e8e8e8>00</font>30 </span>         ( g == gg-<font color=#AA5500>&gt;</font>lc ) ? attachAsLC( v, gg ) : attachAsRC( gg, v );
+<span class="line_num"><font color=#e8e8e8>00</font>31 </span>      updateHeight( g ); updateHeight( p ); updateHeight( v );
+<span class="line_num"><font color=#e8e8e8>00</font>32 </span>   } <font color=#008000>//双层伸展结束时，必有g == NULL，但p可能非空</font>
+<span class="line_num"><font color=#e8e8e8>00</font>33 </span>   <font color=#0000FF>if</font> ( p <font color=#AA5500>=</font> v-<font color=#AA5500>&gt;</font>parent ) { <font color=#008000>//若p果真非空，则额外再做一次单旋</font>
+<span class="line_num"><font color=#e8e8e8>00</font>34 </span>      <font color=#0000FF>if</font> ( IsLChild( <font color=#AA5500>*</font>v ) ) { attachAsLC( v-<font color=#AA5500>&gt;</font>rc, p ); attachAsRC( v, p ); }
+<span class="line_num"><font color=#e8e8e8>00</font>35 </span>      <font color=#0000FF>else</font>                  { attachAsRC ( p, v-<font color=#AA5500>&gt;</font>lc ); attachAsLC ( p, v ); }
+<span class="line_num"><font color=#e8e8e8>00</font>36 </span>      updateHeight( p ); updateHeight( v );
+<span class="line_num"><font color=#e8e8e8>00</font>37 </span>   }
+<span class="line_num"><font color=#e8e8e8>00</font>38 </span>   v-<font color=#AA5500>&gt;</font>parent <font color=#AA5500>=</font> NULL; <font color=#0000FF>return</font> v;
+<span class="line_num"><font color=#e8e8e8>00</font>39 </span>} <font color=#008000>//调整之后新树根应为被伸展的节点，故返回该节点的位置以便上层函数更新树根</font>
+</b></p></pre>
+</body>
+</html>

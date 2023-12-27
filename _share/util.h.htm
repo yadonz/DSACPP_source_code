@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>util.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#800080>#include &lt;iostream&gt;</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#0000FF>using</font> <font color=#0000FF>namespace</font> std;
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span><font color=#008000>/******************************************************************************************</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span><font color=#008000> * 测试、演示用小工具</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span><font color=#008000> ******************************************************************************************/</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span><font color=#800080>#include &lt;cstdio&gt;</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span><font color=#800080>#include &lt;cstdlib&gt;</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span><font color=#800080>#include &lt;ctime&gt;</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span><font color=#800080>#include &lt;cmath&gt;</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span><font color=#800080>#include &lt;typeinfo&gt;</font>
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span><font color=#800080>#include "comparator.h"</font>
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span><font color=#800080>#include "checkOrder_Elem.h"</font>
+<span class="line_num"><font color=#e8e8e8>00</font>15 </span><font color=#800080>#include "checkOrder_list.h"</font>
+<span class="line_num"><font color=#e8e8e8>00</font>16 </span><font color=#800080>#include "checkOrder_vector.h"</font>
+<span class="line_num"><font color=#e8e8e8>00</font>17 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>18 </span><font color=#800080>#include "double_Elem.h"</font>
+<span class="line_num"><font color=#e8e8e8>00</font>19 </span><font color=#800080>#include "increase_Elem.h"</font>
+<span class="line_num"><font color=#e8e8e8>00</font>20 </span><font color=#800080>#include "hailstone_Elem.h"</font>
+<span class="line_num"><font color=#e8e8e8>00</font>21 </span><font color=#800080>#include "increase_list.h"</font>
+<span class="line_num"><font color=#e8e8e8>00</font>22 </span><font color=#800080>#include "increase_vector.h"</font>
+<span class="line_num"><font color=#e8e8e8>00</font>23 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>24 </span><font color=#800080>#include "crc_Elem.h"</font>
+<span class="line_num"><font color=#e8e8e8>00</font>25 </span><font color=#800080>#include "crc_list.h"</font>
+<span class="line_num"><font color=#e8e8e8>00</font>26 </span><font color=#800080>#include "crc_vector.h"</font>
+<span class="line_num"><font color=#e8e8e8>00</font>27 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>28 </span><font color=#800080>#include "rand.h" </font><font color=#008000>//随机数</font>
+<span class="line_num"><font color=#e8e8e8>00</font>29 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>30 </span><font color=#800080>#define max(a,b) (((a) &gt; (b)) ? (a) : (b))</font>
+<span class="line_num"><font color=#e8e8e8>00</font>31 </span><font color=#800080>#define min(a,b) (((a) &lt; (b)) ? (a) : (b))</font>
+<span class="line_num"><font color=#e8e8e8>00</font>32 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>33 </span><font color=#800080>#if defined(DSA_DEBUG) </font><font color=#008000>//编译开关，控制调试输出</font>
+<span class="line_num"><font color=#e8e8e8>00</font>34 </span><font color=#800080>#define DSA(x)  { x } </font><font color=#008000>//输出</font>
+<span class="line_num"><font color=#e8e8e8>00</font>35 </span><font color=#800080>#else</font>
+<span class="line_num"><font color=#e8e8e8>00</font>36 </span><font color=#800080>#define DSA(x) </font><font color=#008000>//不输出</font>
+<span class="line_num"><font color=#e8e8e8>00</font>37 </span><font color=#800080>#endif</font>
+</b></p></pre>
+</body>
+</html>

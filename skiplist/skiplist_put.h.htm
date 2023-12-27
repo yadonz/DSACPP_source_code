@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>skiplist_put.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> K, <font color=#0000FF>typename</font> V<font color=#AA5500>&gt;</font> <font color=#0000FF>bool</font> Skiplist<font color=#AA5500>&lt;</font>K, V&gt;::put( K k, V v ) { <font color=#008000>//跳转表词条插入算法</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   Entry<font color=#AA5500>&lt;</font>K, V<font color=#AA5500>&gt;</font> e <font color=#AA5500>=</font> Entry<font color=#AA5500>&lt;</font>K, V&gt;( k, v ); <font color=#008000>//待插入的词条（将被同一塔中所有节点共用）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   QNodePosi<font color=#AA5500>&lt;</font> Entry<font color=#AA5500>&lt;</font>K, V<font color=#AA5500>&gt;</font> <font color=#AA5500>&gt;</font> p <font color=#AA5500>=</font> search( k ); <font color=#008000>//查找插入位置：新塔将紧邻其右，逐层生长</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   ListNodePosi<font color=#AA5500>&lt;</font> Quadlist<font color=#AA5500>&lt;</font> Entry<font color=#AA5500>&lt;</font>K, V<font color=#AA5500>&gt;</font> &gt;<font color=#AA5500>*</font> <font color=#AA5500>&gt;</font> qlist <font color=#AA5500>=</font> last(); <font color=#008000>//首先在最底层</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   QNodePosi<font color=#AA5500>&lt;</font> Entry<font color=#AA5500>&lt;</font>K, V<font color=#AA5500>&gt;</font> <font color=#AA5500>&gt;</font> b <font color=#AA5500>=</font> qlist-<font color=#AA5500>&gt;</font>data-<font color=#AA5500>&gt;</font>insert( e, p ); <font color=#008000>//创建新塔的基座</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>   <font color=#0000FF>while</font> ( rand() & 1 ) { <font color=#008000>//经投掷硬币，若确定新塔需要再长高，则</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>      <font color=#0000FF>while</font> ( p-<font color=#AA5500>&gt;</font>pred && !p-<font color=#AA5500>&gt;</font>above ) p <font color=#AA5500>=</font> p-<font color=#AA5500>&gt;</font>pred; <font color=#008000>//找出不低于此高度的最近前驱</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>      <font color=#0000FF>if</font> ( !p-<font color=#AA5500>&gt;</font>pred && !p-<font color=#AA5500>&gt;</font>above ) { <font color=#008000>//若该前驱是header，且已是最顶层，则</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>         insertAsFirst( <font color=#0000FF>new</font> Quadlist<font color=#AA5500>&lt;</font> Entry<font color=#AA5500>&lt;</font>K, V<font color=#AA5500>&gt;</font> <font color=#AA5500>&gt;</font> ); <font color=#008000>//需要创建新的一层</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>         first()<font color=#AA5500>-</font><font color=#AA5500>&gt;</font>data-<font color=#AA5500>&gt;</font>header-<font color=#AA5500>&gt;</font>below <font color=#AA5500>=</font> qlist-<font color=#AA5500>&gt;</font>data-<font color=#AA5500>&gt;</font>header;
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>         qlist-<font color=#AA5500>&gt;</font>data-<font color=#AA5500>&gt;</font>header-<font color=#AA5500>&gt;</font>above <font color=#AA5500>=</font> first()<font color=#AA5500>-</font><font color=#AA5500>&gt;</font>data-<font color=#AA5500>&gt;</font>header;
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>      }
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>      p <font color=#AA5500>=</font> p-<font color=#AA5500>&gt;</font>above; qlist <font color=#AA5500>=</font> qlist-<font color=#AA5500>&gt;</font>pred; <font color=#008000>//上升一层，并在该层</font>
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span>      b <font color=#AA5500>=</font> qlist-<font color=#AA5500>&gt;</font>data-<font color=#AA5500>&gt;</font>insert( e, p, b ); <font color=#008000>//将新节点插入p之后、b之上</font>
+<span class="line_num"><font color=#e8e8e8>00</font>15 </span>   } <font color=#008000>//课后：调整随机参数，观察总体层高的相应变化</font>
+<span class="line_num"><font color=#e8e8e8>00</font>16 </span>   <font color=#0000FF>return</font> <font color=#0000FF>true</font>; <font color=#008000>//Dictionary允许重复元素，插入必成功</font>
+<span class="line_num"><font color=#e8e8e8>00</font>17 </span>} <font color=#008000>//体会：得益于哨兵的设置，哪些环节被简化了？</font>
+</b></p></pre>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>entry.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> K, <font color=#0000FF>typename</font> V<font color=#AA5500>&gt;</font> <font color=#0000FF>struct</font> Entry { <font color=#008000>//词条模板类</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   K key; V value; <font color=#008000>//关键码、数值</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   Entry( K k <font color=#AA5500>=</font> K(), V v <font color=#AA5500>=</font> V() ) : key( k ), value( v ){}; <font color=#008000>//默认构造函数</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   Entry( Entry<font color=#AA5500>&lt;</font>K, V<font color=#AA5500>&gt;</font> <font color=#0000FF>const</font>& e ) : key( e.key ), value( e.value ){}; <font color=#008000>//基于克隆的构造函数</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   <font color=#0000FF>bool</font> <font color=#0000FF>operator</font><font color=#AA5500>&lt;</font>( Entry<font color=#AA5500>&lt;</font>K, V<font color=#AA5500>&gt;</font> <font color=#0000FF>const</font>& e ) { <font color=#0000FF>return</font> key <font color=#AA5500>&lt;</font> e.key; } <font color=#008000>//比较器：小于</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>   <font color=#0000FF>bool</font> <font color=#0000FF>operator</font>&gt;( Entry<font color=#AA5500>&lt;</font>K, V<font color=#AA5500>&gt;</font> <font color=#0000FF>const</font>& e ) { <font color=#0000FF>return</font> key <font color=#AA5500>&gt;</font> e.key; } <font color=#008000>//比较器：大于</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>   <font color=#0000FF>bool</font> <font color=#0000FF>operator</font>==( Entry<font color=#AA5500>&lt;</font>K, V<font color=#AA5500>&gt;</font> <font color=#0000FF>const</font>& e ) { <font color=#0000FF>return</font> key == e.key; } <font color=#008000>//判等器：等于</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>   <font color=#0000FF>bool</font> <font color=#0000FF>operator</font>!=( Entry<font color=#AA5500>&lt;</font>K, V<font color=#AA5500>&gt;</font> <font color=#0000FF>const</font>& e ) { <font color=#0000FF>return</font> key != e.key; } <font color=#008000>//判等器：不等于</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>}; <font color=#008000>//得益于比较器和判等器，从此往后，不必严格区分词条及其对应的关键码</font>
+</b></p></pre>
+</body>
+</html>

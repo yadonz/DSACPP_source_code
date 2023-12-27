@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>pfc_generatetree.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span>PFCTree<font color=#AA5500>*</font> generateTree ( PFCForest<font color=#AA5500>*</font> forest ) { <font color=#008000>//构造PFC树</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   srand ( ( <font color=#0000FF>unsigned</font> <font color=#0000FF>int</font> ) time ( NULL ) ); <font color=#008000>//这里将随机取树合并，故先设置随机种子</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   <font color=#0000FF>while</font> ( 1 <font color=#AA5500>&lt;</font> forest-<font color=#AA5500>&gt;</font>size() ) { <font color=#008000>//共做|forest|-1次合并</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>      PFCTree<font color=#AA5500>*</font> s <font color=#AA5500>=</font> <font color=#0000FF>new</font> PFCTree; s-<font color=#AA5500>&gt;</font>insert ( <font color=#FF00FF>'&#94;'</font> ); <font color=#008000>//创建新树（根标记为"^"）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>      Rank r1 <font color=#AA5500>=</font> rand() % forest-<font color=#AA5500>&gt;</font>size(); <font color=#008000>//随机选取r1，且</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>      s-<font color=#AA5500>&gt;</font>attach ( ( <font color=#AA5500>*</font>forest ) <font color=#AA5500>[</font>r1], s-<font color=#AA5500>&gt;</font>root() ); <font color=#008000>//作为左子树接入后</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>      forest-<font color=#AA5500>&gt;</font>remove ( r1 ); <font color=#008000>//随即剔除</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>      Rank r2 <font color=#AA5500>=</font> rand() % forest-<font color=#AA5500>&gt;</font>size(); <font color=#008000>//随机选取r2，且</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>      s-<font color=#AA5500>&gt;</font>attach ( s-<font color=#AA5500>&gt;</font>root(), ( <font color=#AA5500>*</font>forest ) <font color=#AA5500>[</font>r2<font color=#AA5500>]</font> ); <font color=#008000>//作为右子树接入后</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>      forest-<font color=#AA5500>&gt;</font>remove ( r2 ); <font color=#008000>//随即剔除</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>      forest-<font color=#AA5500>&gt;</font>insert ( forest-<font color=#AA5500>&gt;</font>size(), s ); <font color=#008000>//合并后的PFC树重新植入PFC森林</font>
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>   }
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>   <font color=#0000FF>return</font> ( <font color=#AA5500>*</font>forest ) <font color=#AA5500>[</font>0]; <font color=#008000>//至此，森林中尚存的最后一棵树，即全局PFC编码树</font>
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span>}
+</b></p></pre>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<html>
+<head>
+<title>depq.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#0000FF>struct</font> DEPQ : <font color=#0000FF>public</font> PQ<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> { <font color=#008000>//Double-Ended Priority Queue</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   <font color=#0000FF>virtual</font> T getMin() <font color=#AA5500>=</font> 0; <font color=#008000>//get the element with the lowest priority</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   <font color=#0000FF>virtual</font> T delMin() <font color=#AA5500>=</font> 0; <font color=#008000>//remove the element with the lowest priority</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>}; <font color=#008000>//DEPQ</font>
+</b></p></pre>
+</body>
+</html>

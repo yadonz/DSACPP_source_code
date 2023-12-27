@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>hashtable.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#800080>#include "Dictionary/Dictionary.h" </font><font color=#008000>//引入词典ADT</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#800080>#include "Bitmap/Bitmap.h" </font><font color=#008000>//引入位图</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> K, <font color=#0000FF>typename</font> V<font color=#AA5500>&gt;</font> <font color=#008000>//key、value</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span><font color=#0000FF>class</font> Hashtable : <font color=#0000FF>public</font> Dictionary<font color=#AA5500>&lt;</font>K, V<font color=#AA5500>&gt;</font> { <font color=#008000>//符合Dictionary接口的Hashtable模板类</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span><font color=#0000FF>private</font>:
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>   Entry<font color=#AA5500>&lt;</font>K, V&gt;<font color=#AA5500>*</font><font color=#AA5500>*</font> ht; <font color=#008000>//桶数组，存放词条指针</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>   Bitmap<font color=#AA5500>*</font> removed; <font color=#008000>//懒惰删除标记位图：总数L = removed-&gt;size() = removed-&gt;top</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>   Rank M, N; <font color=#008000>//桶的总数、词条的数目：(N+L)/M &lt;= Lambda_max</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span><font color=#0000FF>protected</font>:
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>   Rank probe4Hit( <font color=#0000FF>const</font> K& k ); <font color=#008000>//沿关键码k对应的试探链，找到词条匹配的桶</font>
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>   Rank probe4Free( <font color=#0000FF>const</font> K& k ); <font color=#008000>//沿关键码k对应的试探链，找到首个可用空桶</font>
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>   <font color=#0000FF>void</font> rehash(); <font color=#008000>//重散列算法：扩充桶数组，保证装填因子在警戒线以下</font>
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span><font color=#0000FF>public</font>:
+<span class="line_num"><font color=#e8e8e8>00</font>15 </span>   Hashtable( Rank c <font color=#AA5500>=</font> 5 ); <font color=#008000>//创建一个容量不小于c的散列表（为测试暂时选用较小的默认值）</font>
+<span class="line_num"><font color=#e8e8e8>00</font>16 </span>   ~Hashtable(); <font color=#008000>//释放桶数组及其中各（非空）元素所指向的词条</font>
+<span class="line_num"><font color=#e8e8e8>00</font>17 </span>   Rank size() <font color=#0000FF>const</font> { <font color=#0000FF>return</font> N; } <font color=#008000>// 当前的词条数目</font>
+<span class="line_num"><font color=#e8e8e8>00</font>18 </span>   <font color=#0000FF>bool</font> put( K, V ); <font color=#008000>//插入（禁止雷同词条，故可能失败）</font>
+<span class="line_num"><font color=#e8e8e8>00</font>19 </span>   V<font color=#AA5500>*</font> get( K k ); <font color=#008000>//读取</font>
+<span class="line_num"><font color=#e8e8e8>00</font>20 </span>   <font color=#0000FF>bool</font> remove( K k ); <font color=#008000>//删除</font>
+<span class="line_num"><font color=#e8e8e8>00</font>21 </span>};
+</b></p></pre>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>main.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#800080>#include "binTree_test.h"</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span><font color=#0000FF>int</font> testID <font color=#AA5500>=</font> 0; <font color=#008000>//测试编号</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span><font color=#008000>// 随机生成期望高度为h的二叉树</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#0000FF>bool</font> randomBinTree ( BinTree<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> & bt, BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> x, <font color=#0000FF>int</font> h ) {
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>   <font color=#0000FF>if</font> ( 0 &gt;= h ) <font color=#0000FF>return</font> <font color=#0000FF>false</font>; <font color=#008000>//至多h层</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>   <font color=#0000FF>if</font> ( 0 <font color=#AA5500>&lt;</font> dice ( h ) ) <font color=#008000>//以1/h的概率终止当前分支的生长</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>      randomBinTree ( bt, bt.insert ( x, dice ( ( T ) h <font color=#AA5500>*</font> h <font color=#AA5500>*</font> h ) ), h <font color=#AA5500>-</font> 1 );
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>   <font color=#0000FF>if</font> ( 0 <font color=#AA5500>&lt;</font> dice ( h ) ) <font color=#008000>//以1/h的概率终止当前分支的生长</font>
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>      randomBinTree ( bt, bt.insert ( dice ( ( T ) h <font color=#AA5500>*</font> h <font color=#AA5500>*</font> h ), x ), h <font color=#AA5500>-</font> 1 );
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>   <font color=#0000FF>return</font> <font color=#0000FF>true</font>;
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>}
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>15 </span><font color=#008000>// 在二叉树中随机确定一个节点位置</font>
+<span class="line_num"><font color=#e8e8e8>00</font>16 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> randomPosiInBinTree ( BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> root ) {
+<span class="line_num"><font color=#e8e8e8>00</font>17 </span>   <font color=#0000FF>if</font> ( !HasChild ( <font color=#AA5500>*</font>root ) ) <font color=#0000FF>return</font> root;
+<span class="line_num"><font color=#e8e8e8>00</font>18 </span>   <font color=#0000FF>if</font> ( !HasLChild ( <font color=#AA5500>*</font>root ) )
+<span class="line_num"><font color=#e8e8e8>00</font>19 </span>      <font color=#0000FF>return</font> dice ( 6 ) ? randomPosiInBinTree ( root-<font color=#AA5500>&gt;</font>rc ) : root;
+<span class="line_num"><font color=#e8e8e8>00</font>20 </span>   <font color=#0000FF>if</font> ( !HasRChild ( <font color=#AA5500>*</font>root ) )
+<span class="line_num"><font color=#e8e8e8>00</font>21 </span>      <font color=#0000FF>return</font> dice ( 6 ) ? randomPosiInBinTree ( root-<font color=#AA5500>&gt;</font>lc ) : root;
+<span class="line_num"><font color=#e8e8e8>00</font>22 </span>   <font color=#0000FF>return</font> dice ( 2 ) ?
+<span class="line_num"><font color=#e8e8e8>00</font>23 </span>          randomPosiInBinTree ( root-<font color=#AA5500>&gt;</font>lc ) :
+<span class="line_num"><font color=#e8e8e8>00</font>24 </span>          randomPosiInBinTree ( root-<font color=#AA5500>&gt;</font>rc ) ;
+<span class="line_num"><font color=#e8e8e8>00</font>25 </span>}
+<span class="line_num"><font color=#e8e8e8>00</font>26 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>27 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#0000FF>void</font>   testBinTree ( <font color=#0000FF>int</font> h ) { <font color=#008000>//测试二叉树</font>
+<span class="line_num"><font color=#e8e8e8>00</font>28 </span>   printf ( <font color=#FF00FF>"\n  ==== Test %2d. Generate a binTree of height &lt;= %d \n"</font>, testID++, h );
+<span class="line_num"><font color=#e8e8e8>00</font>29 </span>   BinTree<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> bt; print ( bt );
+<span class="line_num"><font color=#e8e8e8>00</font>30 </span>   bt.insert ( dice ( ( T ) h <font color=#AA5500>*</font> h <font color=#AA5500>*</font> h ) ); print ( bt );
+<span class="line_num"><font color=#e8e8e8>00</font>31 </span>   randomBinTree<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> ( bt, bt.root(), h ); print ( bt );
+<span class="line_num"><font color=#e8e8e8>00</font>32 </span>   printf ( <font color=#FF00FF>"\n  ==== Test %2d. Double and increase all nodes by traversal\n"</font>, testID++ );
+<span class="line_num"><font color=#e8e8e8>00</font>33 </span>   bt.travPre ( <font color=#0000FF>Double</font><font color=#AA5500>&lt;</font>T&gt;() ); bt.travPre ( Increase<font color=#AA5500>&lt;</font>T&gt;() ); print ( bt );
+<span class="line_num"><font color=#e8e8e8>00</font>34 </span>   bt.travIn ( <font color=#0000FF>Double</font><font color=#AA5500>&lt;</font>T&gt;() ); bt.travIn ( Increase<font color=#AA5500>&lt;</font>T&gt;() ); print ( bt );
+<span class="line_num"><font color=#e8e8e8>00</font>35 </span>   bt.travPost ( <font color=#0000FF>Double</font><font color=#AA5500>&lt;</font>T&gt;() ); bt.travPost ( Increase<font color=#AA5500>&lt;</font>T&gt;() ); print ( bt );
+<span class="line_num"><font color=#e8e8e8>00</font>36 </span>   bt.travLevel ( <font color=#0000FF>Double</font><font color=#AA5500>&lt;</font>T&gt;() ); bt.travLevel ( Increase<font color=#AA5500>&lt;</font>T&gt;() ); print ( bt );
+<span class="line_num"><font color=#e8e8e8>00</font>37 </span>   Hailstone<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> hs; bt.travIn ( hs ); print ( bt );
+<span class="line_num"><font color=#e8e8e8>00</font>38 </span>   printf ( <font color=#FF00FF>"\n  ==== Test %2d. Remove/release subtrees in the Tree\n"</font>, testID++ );
+<span class="line_num"><font color=#e8e8e8>00</font>39 </span>   <font color=#0000FF>while</font> ( !bt.empty() ) {
+<span class="line_num"><font color=#e8e8e8>00</font>40 </span>      BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> p <font color=#AA5500>=</font> randomPosiInBinTree ( bt.root() ); <font color=#008000>//随机选择一个节点</font>
+<span class="line_num"><font color=#e8e8e8>00</font>41 </span>      <font color=#0000FF>if</font> ( dice ( 2 ) ) {
+<span class="line_num"><font color=#e8e8e8>00</font>42 </span>         printf ( <font color=#FF00FF>"removing "</font> ); print ( p-<font color=#AA5500>&gt;</font>data ); printf ( <font color=#FF00FF>" ...\n"</font> );
+<span class="line_num"><font color=#e8e8e8>00</font>43 </span>         printf ( <font color=#FF00FF>"%d node(s) removed\n"</font>, bt.remove ( p ) ); print ( bt );
+<span class="line_num"><font color=#e8e8e8>00</font>44 </span>      } <font color=#0000FF>else</font> {
+<span class="line_num"><font color=#e8e8e8>00</font>45 </span>         printf ( <font color=#FF00FF>"releasing "</font> ); print ( p-<font color=#AA5500>&gt;</font>data ); printf ( <font color=#FF00FF>" ...\n"</font> );
+<span class="line_num"><font color=#e8e8e8>00</font>46 </span>         BinTree<font color=#AA5500>&lt;</font>T&gt;<font color=#AA5500>*</font> S <font color=#AA5500>=</font> bt.secede ( p ); print ( S );
+<span class="line_num"><font color=#e8e8e8>00</font>47 </span>         printf ( <font color=#FF00FF>"%d node(s) released\n"</font>, S-<font color=#AA5500>&gt;</font>size() ); release ( S ); print ( bt );
+<span class="line_num"><font color=#e8e8e8>00</font>48 </span>      }
+<span class="line_num"><font color=#e8e8e8>00</font>49 </span>   }
+<span class="line_num"><font color=#e8e8e8>00</font>50 </span>}
+<span class="line_num"><font color=#e8e8e8>00</font>51 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>52 </span><font color=#0000FF>int</font> main ( <font color=#0000FF>int</font> argc, <font color=#0000FF>char</font><font color=#AA5500>*</font> argv[] ) { <font color=#008000>//测试二叉树</font>
+<span class="line_num"><font color=#e8e8e8>00</font>53 </span>   <font color=#0000FF>if</font> ( 2 <font color=#AA5500>&gt;</font> argc ) { printf ( <font color=#FF00FF>"Usage: %s &lt;size of test&gt;\a\a\n"</font>, argv<font color=#AA5500>[</font>0<font color=#AA5500>]</font> ); <font color=#0000FF>return</font> 1; }
+<span class="line_num"><font color=#e8e8e8>00</font>54 </span>   srand ( ( <font color=#0000FF>unsigned</font> <font color=#0000FF>int</font> ) time ( NULL ) );
+<span class="line_num"><font color=#e8e8e8>00</font>55 </span>   testBinTree<font color=#AA5500>&lt;</font><font color=#0000FF>int</font><font color=#AA5500>&gt;</font> ( atoi ( argv<font color=#AA5500>[</font>1<font color=#AA5500>]</font> ) ); <font color=#008000>//元素类型可以在这里任意选择</font>
+<span class="line_num"><font color=#e8e8e8>00</font>56 </span>   <font color=#0000FF>return</font> 0;
+<span class="line_num"><font color=#e8e8e8>00</font>57 </span>}
+</b></p></pre>
+</body>
+</html>

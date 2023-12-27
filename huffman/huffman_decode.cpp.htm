@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>huffman_decode.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#008000>// 根据编码树对长为n的Bitmap串做Huffman解码</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#0000FF>void</font> decode ( HuffTree<font color=#AA5500>*</font> tree, Bitmap<font color=#AA5500>*</font> code, <font color=#0000FF>int</font> n ) {
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   BinNodePosi<font color=#AA5500>&lt;</font>HuffChar<font color=#AA5500>&gt;</font> x <font color=#AA5500>=</font> tree-<font color=#AA5500>&gt;</font>root();
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   <font color=#0000FF>for</font> ( <font color=#0000FF>int</font> i <font color=#AA5500>=</font> 0; i <font color=#AA5500>&lt;</font> n; i++ ) {
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>      x <font color=#AA5500>=</font> code-<font color=#AA5500>&gt;</font>test ( i ) ? x-<font color=#AA5500>&gt;</font>rc : x-<font color=#AA5500>&gt;</font>lc;
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>      <font color=#0000FF>if</font> ( IsLeaf ( <font color=#AA5500>*</font>x ) ) {  printf ( <font color=#FF00FF>"%c"</font>, x-<font color=#AA5500>&gt;</font>data.ch ); x <font color=#AA5500>=</font> tree-<font color=#AA5500>&gt;</font>root();  }
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>   }
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>} <font color=#008000>//解出的明码，在此直接打印输出；实用中可改为根据需要返回上层调用者</font>
+</b></p></pre>
+</body>
+</html>

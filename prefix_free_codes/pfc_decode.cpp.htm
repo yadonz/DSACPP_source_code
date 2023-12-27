@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>pfc_decode.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>void</font> decode ( PFCTree<font color=#AA5500>*</font> tree, Bitmap& code, <font color=#0000FF>int</font> n ) { <font color=#008000>//PFC解码算法</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   BinNodePosi<font color=#AA5500>&lt;</font><font color=#0000FF>char</font><font color=#AA5500>&gt;</font> x <font color=#AA5500>=</font> tree-<font color=#AA5500>&gt;</font>root(); <font color=#008000>//根据PFC编码树</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   <font color=#0000FF>for</font> ( <font color=#0000FF>int</font> i <font color=#AA5500>=</font> 0; i <font color=#AA5500>&lt;</font> n; i++ ) { <font color=#008000>//将编码（二进制位图）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>      x <font color=#AA5500>=</font> code.test ( i ) ? x-<font color=#AA5500>&gt;</font>rc : x-<font color=#AA5500>&gt;</font>lc; <font color=#008000>//转译为明码并</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>      <font color=#0000FF>if</font> ( IsLeaf ( <font color=#AA5500>*</font>x ) ) { printf ( <font color=#FF00FF>"%c"</font>, x-<font color=#AA5500>&gt;</font>data ); x <font color=#AA5500>=</font> tree-<font color=#AA5500>&gt;</font>root(); } <font color=#008000>//打印输出</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>   }
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>}
+</b></p></pre>
+</body>
+</html>

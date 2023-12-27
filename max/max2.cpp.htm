@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>max2.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>int</font> maxR( <font color=#0000FF>int</font> A[], <font color=#0000FF>int</font> lo, <font color=#0000FF>int</font> hi ) { <font color=#008000>//计算数组区间A[lo, hi)的最大值（二分递归）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   <font color=#0000FF>if</font> ( lo <font color=#AA5500>+</font> 1 == hi ) <font color=#008000>//如遇递归基（区间长度已降至1），则</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>      <font color=#0000FF>return</font> A<font color=#AA5500>[</font>lo]; <font color=#008000>//直接返回该元素</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   <font color=#0000FF>else</font> { <font color=#008000>//否则（一般情况下lo + 1 &lt; hi），则递归地</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>      <font color=#0000FF>int</font> mi <font color=#AA5500>=</font> ( lo <font color=#AA5500>+</font> hi ) &gt;&gt; 1; <font color=#008000>//以中位单元为界，将原区间一分为二：A[lo, mi)和A[mi, hi)</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>      <font color=#0000FF>return</font> max( maxR( A, lo, mi ), maxR( A, mi, hi ) ); <font color=#008000>//计算子区间的最大值，再从中取大者</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>   }
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>} <font color=#008000>//O(hi - lo)，线性正比于区间的长度</font>
+</b></p></pre>
+</body>
+</html>

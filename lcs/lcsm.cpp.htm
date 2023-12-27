@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>lcsm.cpp</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#800080>#include &lt;algorithm&gt;</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#0000FF>using</font> <font color=#0000FF>namespace</font> std;
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span><font color=#0000FF>unsigned</font> <font color=#0000FF>int</font> lcsM(<font color=#0000FF>char</font> <font color=#0000FF>const</font> <font color=#AA5500>*</font> A, <font color=#0000FF>int</font> n, <font color=#0000FF>char</font> <font color=#0000FF>const</font> <font color=#AA5500>*</font> B, <font color=#0000FF>int</font> m, <font color=#0000FF>unsigned</font> <font color=#0000FF>int</font> <font color=#AA5500>*</font> <font color=#0000FF>const</font> lcs, <font color=#0000FF>int</font> <font color=#0000FF>const</font> M) {
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   <font color=#0000FF>if</font> (n <font color=#AA5500>&lt;</font> 1 || m <font color=#AA5500>&lt;</font> 1) <font color=#0000FF>return</font> 0;
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>   <font color=#0000FF>if</font> (UINT_MAX != lcs[(n-1)<font color=#AA5500>*</font>M <font color=#AA5500>+</font> m-1])
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>      <font color=#0000FF>return</font> lcs[(n-1)<font color=#AA5500>*</font>M <font color=#AA5500>+</font> m-1]; <font color=#008000>//recursion stops here</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>   <font color=#0000FF>else</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>      <font color=#0000FF>return</font> lcs[(n-1)<font color=#AA5500>*</font>M <font color=#AA5500>+</font> m-1<font color=#AA5500>]</font> <font color=#AA5500>=</font> (A<font color=#AA5500>[</font>n-1<font color=#AA5500>]</font> == B<font color=#AA5500>[</font>m-1]) ?
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>               1 <font color=#AA5500>+</font> lcsM(A, n-1, B, m-1, lcs, M) :
+<span class="line_num"><font color=#e8e8e8>00</font>11 </span>               max( lcsM(A, n-1, B, m, lcs, M), lcsM(A, n, B, m-1, lcs, M) );
+<span class="line_num"><font color=#e8e8e8>00</font>12 </span>}
+<span class="line_num"><font color=#e8e8e8>00</font>13 </span>
+<span class="line_num"><font color=#e8e8e8>00</font>14 </span><font color=#0000FF>unsigned</font> <font color=#0000FF>int</font> lcsMemoization(<font color=#0000FF>char</font> <font color=#0000FF>const</font><font color=#AA5500>*</font> A, <font color=#0000FF>int</font> n, <font color=#0000FF>char</font> <font color=#0000FF>const</font><font color=#AA5500>*</font> B, <font color=#0000FF>int</font> m) {
+<span class="line_num"><font color=#e8e8e8>00</font>15 </span>   <font color=#0000FF>unsigned</font> <font color=#0000FF>int</font> <font color=#AA5500>*</font> lcs <font color=#AA5500>=</font> <font color=#0000FF>new</font> <font color=#0000FF>unsigned</font> <font color=#0000FF>int</font><font color=#AA5500>[</font>n<font color=#AA5500>*</font>m]; <font color=#008000>//a lookup-table of all sub-solutions</font>
+<span class="line_num"><font color=#e8e8e8>00</font>16 </span>   memset(lcs, 0xFF, <font color=#0000FF>sizeof</font>(<font color=#0000FF>unsigned</font> <font color=#0000FF>int</font>)<font color=#AA5500>*</font>n<font color=#AA5500>*</font>m); <font color=#008000>//initialized with n*m UINT_MAX's</font>
+<span class="line_num"><font color=#e8e8e8>00</font>17 </span>   <font color=#0000FF>unsigned</font> <font color=#0000FF>int</font> solu <font color=#AA5500>=</font> lcsM(A, n, B, m, lcs, m);
+<span class="line_num"><font color=#e8e8e8>00</font>18 </span>   <font color=#0000FF>delete</font>[] lcs;
+<span class="line_num"><font color=#e8e8e8>00</font>19 </span>   <font color=#0000FF>return</font> solu;
+<span class="line_num"><font color=#e8e8e8>00</font>20 </span>}
+</b></p></pre>
+</body>
+</html>

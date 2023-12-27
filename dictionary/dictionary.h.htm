@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>dictionary.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> K, <font color=#0000FF>typename</font> V<font color=#AA5500>&gt;</font> <font color=#0000FF>struct</font> Dictionary { <font color=#008000>//词典Dictionary模板类</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   <font color=#0000FF>virtual</font> Rank size() <font color=#0000FF>const</font> <font color=#AA5500>=</font> 0; <font color=#008000>//当前词条总数</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   <font color=#0000FF>virtual</font> <font color=#0000FF>bool</font> put( K, V ) <font color=#AA5500>=</font> 0; <font color=#008000>//插入词条（禁止雷同词条时可能失败）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   <font color=#0000FF>virtual</font> V<font color=#AA5500>*</font> get( K k ) <font color=#AA5500>=</font> 0; <font color=#008000>//读取词条</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   <font color=#0000FF>virtual</font> <font color=#0000FF>bool</font> remove( K k ) <font color=#AA5500>=</font> 0; <font color=#008000>//删除词条</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>};
+</b></p></pre>
+</body>
+</html>

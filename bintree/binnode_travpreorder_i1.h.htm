@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>binnode_travpreorder_i1.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T, <font color=#0000FF>typename</font> VST<font color=#AA5500>&gt;</font> <font color=#008000>//元素类型、操作器</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#0000FF>void</font> travPre_I1( BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> x, VST& visit ) { <font color=#008000>//二叉树先序遍历算法（迭代版#1）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   Stack<font color=#AA5500>&lt;</font>BinNodePosi<font color=#AA5500>&lt;</font>T&gt;&gt; S; <font color=#008000>//辅助栈</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   <font color=#0000FF>if</font> ( x ) S.push( x ); <font color=#008000>//根节点入栈</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   <font color=#0000FF>while</font> ( !S.empty() ) { <font color=#008000>//在栈变空之前反复循环</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>      x <font color=#AA5500>=</font> S.pop(); visit( x-<font color=#AA5500>&gt;</font>data ); <font color=#008000>//弹出并访问当前节点，其非空孩子的入栈次序为先右后左</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>      <font color=#0000FF>if</font> ( HasRChild( <font color=#AA5500>*</font>x ) ) S.push( x-<font color=#AA5500>&gt;</font>rc );
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>      <font color=#0000FF>if</font> ( HasLChild( <font color=#AA5500>*</font>x ) ) S.push( x-<font color=#AA5500>&gt;</font>lc );
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>   }
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>}
+</b></p></pre>
+</body>
+</html>

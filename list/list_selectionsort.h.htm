@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>list_selectionsort.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#008000>//对列表中起始于位置p、宽度为n的区间做选择排序</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span><font color=#0000FF>void</font> List<font color=#AA5500>&lt;</font>T&gt;::selectionSort( ListNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> p, Rank n ) { <font color=#008000>// valid(p) && Rank(p) + n &lt;= size</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   ListNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> head <font color=#AA5500>=</font> p-<font color=#AA5500>&gt;</font>pred, tail <font color=#AA5500>=</font> p;
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   <font color=#0000FF>for</font> ( Rank i <font color=#AA5500>=</font> 0; i <font color=#AA5500>&lt;</font> n; i++ ) tail <font color=#AA5500>=</font> tail-<font color=#AA5500>&gt;</font>succ; <font color=#008000>//待排序区间为(head, tail)</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>   <font color=#0000FF>while</font> ( 1 <font color=#AA5500>&lt;</font> n ) { <font color=#008000>//在至少还剩两个节点之前，在待排序区间内</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>      ListNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> max <font color=#AA5500>=</font> selectMax ( head-<font color=#AA5500>&gt;</font>succ, n ); <font color=#008000>//找出最大者（歧义时后者优先）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>      insert( remove( max ), tail ); <font color=#008000>//将其移至无序区间末尾（作为有序区间新的首元素）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>      tail <font color=#AA5500>=</font> tail-<font color=#AA5500>&gt;</font>pred; n--;
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>   }
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>}
+</b></p></pre>
+</body>
+</html>

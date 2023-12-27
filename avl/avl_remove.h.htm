@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>avl_remove.h</title>
+<meta http-equiv="content-type" content="text/html; charset=GBK">
+<style type="text/css">
+<!--.line_num {color: #666666; background-color: #E8E8E8;}//-->
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000>
+<pre style="font: 16pt consolas, 微软雅黑;"><b><p style="line-height: 150%">
+<span class="line_num"><font color=#e8e8e8>000</font>1 </span><font color=#0000FF>template</font> <font color=#AA5500>&lt;</font><font color=#0000FF>typename</font> T<font color=#AA5500>&gt;</font> <font color=#0000FF>bool</font> AVL<font color=#AA5500>&lt;</font>T&gt;::remove( <font color=#0000FF>const</font> T& e ) { <font color=#008000>//从AVL树中删除关键码e</font>
+<span class="line_num"><font color=#e8e8e8>000</font>2 </span>   BinNodePosi<font color=#AA5500>&lt;</font>T&gt;& x <font color=#AA5500>=</font> search( e ); <font color=#0000FF>if</font> ( !x ) <font color=#0000FF>return</font> <font color=#0000FF>false</font>; <font color=#008000>//确认目标存在（留意_hot的设置）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>3 </span>   removeAt( x, _hot ); _size--; <font color=#008000>//先按BST规则删除之（此后，原节点之父_hot及其祖先均可能失衡）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>4 </span>   <font color=#0000FF>for</font> ( BinNodePosi<font color=#AA5500>&lt;</font>T<font color=#AA5500>&gt;</font> g <font color=#AA5500>=</font> _hot; g; g <font color=#AA5500>=</font> g-<font color=#AA5500>&gt;</font>parent ) { <font color=#008000>//从_hot出发向上，逐层检查各代祖先g</font>
+<span class="line_num"><font color=#e8e8e8>000</font>5 </span>      <font color=#0000FF>if</font> ( !AvlBalanced( <font color=#AA5500>*</font>g ) ) <font color=#008000>//一旦发现g失衡，则（采用“3 + 4”算法）使之复衡，并将该子树联至</font>
+<span class="line_num"><font color=#e8e8e8>000</font>6 </span>         g <font color=#AA5500>=</font> FromParentTo( <font color=#AA5500>*</font>g ) <font color=#AA5500>=</font> rotateAt( tallerChild( tallerChild( g ) ) ); <font color=#008000>//原父亲</font>
+<span class="line_num"><font color=#e8e8e8>000</font>7 </span>      updateHeight( g ); <font color=#008000>//更新高度（注意：即便g未失衡或已恢复平衡，高度均可能降低）</font>
+<span class="line_num"><font color=#e8e8e8>000</font>8 </span>   } <font color=#008000>//可能需做Omega(logn)次调整——无论是否做过调整，全树高度均可能降低</font>
+<span class="line_num"><font color=#e8e8e8>000</font>9 </span>   <font color=#0000FF>return</font> <font color=#0000FF>true</font>; <font color=#008000>//删除成功</font>
+<span class="line_num"><font color=#e8e8e8>00</font>10 </span>}
+</b></p></pre>
+</body>
+</html>
