@@ -1,10 +1,10 @@
 #include "print.h"
 
 /******************************************************************************************
- * »ù±¾ÀàĞÍ
+ * åŸºæœ¬ç±»å‹
  ******************************************************************************************/
 void UniPrint::p( int e ) { printf( " %04d", e ); }
-void UniPrint::p( size_t e ) { p( (int)e ); } // RankĞÍ0xFFFFFFFFÔÚ´òÓ¡Ç°ÏÈ×ª»»Îª-1£¬ÒÔ±ã¹Û²ì
+void UniPrint::p( size_t e ) { p( (int)e ); } // Rankå‹0xFFFFFFFFåœ¨æ‰“å°å‰å…ˆè½¬æ¢ä¸º-1ï¼Œä»¥ä¾¿è§‚å¯Ÿ
 void UniPrint::p( float e ) { printf( " %4.3f", e ); }
 void UniPrint::p( double e ) { printf( " %4.3f", e ); }
 void UniPrint::p( char e ) { printf( " &#37;c", ( 31 < e ) && ( e < 128 ) ? e : '$' ); }

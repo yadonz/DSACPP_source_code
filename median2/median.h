@@ -1,7 +1,7 @@
-template <typename T> //ÏòÁ¿S1[lo1, lo1 + n1)ºÍS2[lo2, lo2 + n2)·Ö±ğÓĞĞò£¬Êı¾İÏî¿ÉÄÜÖØ¸´
-T median ( Vector<T>& S1, Rank lo1, Rank n1, Vector<T>& S2, Rank lo2, Rank n2 ) { //ÖĞÎ»ÊıËã·¨
-   if ( n1 > n2 ) return median( S2, lo2, n2, S1, lo1, n1 ); //È·±£n1 <= n2
-   if ( n2 < 6 ) //µİ¹é»ù£º1 <= n1 <= n2 <= 5
+template <typename T> //å‘é‡S1[lo1, lo1 + n1)å’ŒS2[lo2, lo2 + n2)åˆ†åˆ«æœ‰åºï¼Œæ•°æ®é¡¹å¯èƒ½é‡å¤
+T median ( Vector<T>& S1, Rank lo1, Rank n1, Vector<T>& S2, Rank lo2, Rank n2 ) { //ä¸­ä½æ•°ç®—æ³•
+   if ( n1 > n2 ) return median( S2, lo2, n2, S1, lo1, n1 ); //ç¡®ä¿n1 <= n2
+   if ( n2 < 6 ) //é€’å½’åŸºï¼š1 <= n1 <= n2 <= 5
       return trivialMedian( S1, lo1, n1, S2, lo2, n2 );
    ///////////////////////////////////////////////////////////////////////
    //                lo1            lo1 + n1/2      lo1 + n1 - 1
@@ -11,7 +11,7 @@ T median ( Vector<T>& S1, Rank lo1, Rank n1, Vector<T>& S2, Rank lo2, Rank n2 ) 
    // |               |                 |                 |               |
    // lo2     lo2 + (n2-n1)/2       lo2 + n2/2     lo2 + (n2+n1)/2    lo2 + n2 -1
    ///////////////////////////////////////////////////////////////////////
-   if ( 2 * n1 < n2 ) //ÈôÁ½¸öÏòÁ¿µÄ³¤¶ÈÏà²îĞüÊâ£¬Ôò³¤Õß£¨S2£©µÄÁ½Òí¿ÉÖ±½Ó½Ø³ı
+   if ( 2 * n1 < n2 ) //è‹¥ä¸¤ä¸ªå‘é‡çš„é•¿åº¦ç›¸å·®æ‚¬æ®Šï¼Œåˆ™é•¿è€…ï¼ˆS2ï¼‰çš„ä¸¤ç¿¼å¯ç›´æ¥æˆªé™¤
       return median( S1, lo1, n1, S2, lo2 + ( n2 - n1 - 1 ) / 2, n1 + 2 - ( n2 - n1 ) % 2 );
    ///////////////////////////////////////////////////////////////////////
    //    lo1                  lo1 + n1/2              lo1 + n1 - 1
@@ -41,11 +41,11 @@ T median ( Vector<T>& S1, Rank lo1, Rank n1, Vector<T>& S2, Rank lo2, Rank n2 ) 
    Rank mi1 = lo1 + n1 / 2;
    Rank mi2a = lo2 + ( n1 - 1 ) / 2;
    Rank mi2b = lo2 + n2 - 1 - n1 / 2;
-   if ( S1[mi1] > S2[mi2b] ) //È¡S1×ó°ë¡¢S2ÓÒ°ë
+   if ( S1[mi1] > S2[mi2b] ) //å–S1å·¦åŠã€S2å³åŠ
       return median( S1, lo1, n1 / 2 + 1, S2, mi2a, n2 - ( n1 - 1 ) / 2 );
-   else if ( S1[mi1] < S2[mi2a] ) //È¡S1ÓÒ°ë¡¢S2×ó°ë
+   else if ( S1[mi1] < S2[mi2a] ) //å–S1å³åŠã€S2å·¦åŠ
       return median( S1, mi1, ( n1 + 1 ) / 2, S2, lo2, n2 - n1 / 2 );
-   else //S1±£Áô£¬S2×óÓÒÍ¬Ê±Ëõ¶Ì
+   else //S1ä¿ç•™ï¼ŒS2å·¦å³åŒæ—¶ç¼©çŸ­
       return median( S1, lo1, n1, S2, mi2a, n2 - ( n1 - 1 ) / 2 * 2 );
 }
 

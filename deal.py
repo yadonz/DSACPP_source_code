@@ -41,10 +41,10 @@ def text_processing(text):
 
 def do_process2file(path):
     
-    with open(path, "r") as f:
+    with open(path, "r", encoding="gbk") as f:  # html 的字符格编码是 GBK
         text = f.read()
         text = text_processing(text)
-        with open(path[:-4], "w") as f:
+        with open(path[:-4], "w", encoding="utf-8") as f:  # 将 html 的编码转换成 utf-8 编码
             f.write(text)
 
 

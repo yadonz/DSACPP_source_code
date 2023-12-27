@@ -1,19 +1,19 @@
-HuffTree* minHChar ( HuffForest* forest ) { //ÔÚHuffmanÉ­ÁÖÖĞÕÒ³öÈ¨ÖØ×îĞ¡µÄ³¬×Ö·û
-   ListNodePosi<HuffTree*> m = forest->first(); //´ÓÊ×½Úµã³ö·¢£¬±éÀúËùÓĞ½Úµã
+HuffTree* minHChar ( HuffForest* forest ) { //åœ¨Huffmanæ£®æ—ä¸­æ‰¾å‡ºæƒé‡æœ€å°çš„è¶…å­—ç¬¦
+   ListNodePosi<HuffTree*> m = forest->first(); //ä»é¦–èŠ‚ç‚¹å‡ºå‘ï¼Œéå†æ‰€æœ‰èŠ‚ç‚¹
    for ( ListNodePosi<HuffTree*> p = m->succ; forest->valid( p ); p = p->succ )
-      if ( m->data->root()->data.weight > p->data->root()->data.weight ) //²»¶Ï¸üĞÂ
-         m = p; //ÕÒµ½×îĞ¡½Úµã£¨Ëù¶ÔÓ¦µÄHuffman×ÓÊ÷£©
-   return forest->remove( m ); //´ÓÉ­ÁÖÖĞÈ¡³ö¸Ã×ÓÊ÷£¬²¢·µ»Ø
+      if ( m->data->root()->data.weight > p->data->root()->data.weight ) //ä¸æ–­æ›´æ–°
+         m = p; //æ‰¾åˆ°æœ€å°èŠ‚ç‚¹ï¼ˆæ‰€å¯¹åº”çš„Huffmanå­æ ‘ï¼‰
+   return forest->remove( m ); //ä»æ£®æ—ä¸­å–å‡ºè¯¥å­æ ‘ï¼Œå¹¶è¿”å›
 }
 
-HuffTree* generateTree ( HuffForest* forest ) { //Huffman±àÂëËã·¨
+HuffTree* generateTree ( HuffForest* forest ) { //Huffmanç¼–ç ç®—æ³•
    while ( 1 < forest->size() ) {
       HuffTree* T1 = minHChar ( forest ); HuffTree* T2 = minHChar ( forest );
       HuffTree* S = new HuffTree();
       S->insert ( HuffChar ( '&#94;', T1->root()->data.weight + T2->root()->data.weight ) );
       S->attach ( T1, S->root() ); S->attach ( S->root(), T2 );
       forest->insertAsLast ( S );
-   } //assert: Ñ­»·½áÊøÊ±£¬É­ÁÖÖĞÎ¨Ò»£¨ÁĞ±íÊ×½ÚµãÖĞ£©µÄÄÇ¿ÃÊ÷¼´Huffman±àÂëÊ÷
+   } //assert: å¾ªç¯ç»“æŸæ—¶ï¼Œæ£®æ—ä¸­å”¯ä¸€ï¼ˆåˆ—è¡¨é¦–èŠ‚ç‚¹ä¸­ï¼‰çš„é‚£æ£µæ ‘å³Huffmanç¼–ç æ ‘
    return forest->first()->data;
 }
 

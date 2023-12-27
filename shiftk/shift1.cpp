@@ -1,4 +1,4 @@
-int shift1 ( int* A, int n, int k ) { //通过GCD(n, k)轮迭代，将数组循环左移k位，O(n)
+int shift1 ( int* A, int n, int k ) { //閫氳繃GCD(n, k)杞凯浠ｏ紝灏嗘暟缁勫惊鐜乏绉籯浣嶏紝O(n)
    if ( k < 1 ) return 0;
    int mov = 0, s = 0;
    while ( mov < n ) { //O(GCD(n, k)) = O(n*k/LCM(n, k))

@@ -1,8 +1,8 @@
-template <typename K, typename V> bool Hashtable<K, V>::remove( K k ) { //É¢ÁĞ±í´ÊÌõÉ¾³ıËã·¨
-   Rank r = probe4Hit( k ); if ( !ht[r] ) return false; //È·ÈÏÄ¿±ê´ÊÌõÈ·Êµ´æÔÚ
-   release( ht[r] ); ht[r] = NULL; --N; //Çå³ıÄ¿±ê´ÊÌõ
-   removed->set(r); //¸üĞÂ±ê¼Ç¡¢¼ÆÊıÆ÷
-   if ( removed->size() > 3*N ) rehash(); //ÈôÀÁ¶èÉ¾³ı±ê¼Ç¹ı¶à£¬ÖØÉ¢ÁĞ
+template <typename K, typename V> bool Hashtable<K, V>::remove( K k ) { //æ•£åˆ—è¡¨è¯æ¡åˆ é™¤ç®—æ³•
+   Rank r = probe4Hit( k ); if ( !ht[r] ) return false; //ç¡®è®¤ç›®æ ‡è¯æ¡ç¡®å®å­˜åœ¨
+   release( ht[r] ); ht[r] = NULL; --N; //æ¸…é™¤ç›®æ ‡è¯æ¡
+   removed->set(r); //æ›´æ–°æ ‡è®°ã€è®¡æ•°å™¨
+   if ( removed->size() > 3*N ) rehash(); //è‹¥æ‡’æƒ°åˆ é™¤æ ‡è®°è¿‡å¤šï¼Œé‡æ•£åˆ—
    return true;
 }
 

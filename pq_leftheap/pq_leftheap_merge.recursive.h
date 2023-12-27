@@ -1,14 +1,14 @@
-template <typename T> //╨о╡╒ртa╨мbн╙╦Ы╫з╣Ц╣да╫╦ЖвСй╫╤яё╗╣щ╧И╟Фё╘
+template <typename T> //Е░┬Е╧╤Д╩╔aЕ▓▄bД╦╨Ф═╧Х┼┌Г┌╧Г └Д╦╓Д╦╙Е╥╕Е╪▐Е═├О╪┬И─▓Е╫▓Г┴┬О╪┴
 BinNodePosi<T> merge( BinNodePosi<T> a, BinNodePosi<T> b ) {
-   if ( !a ) return b; //мк╩╞гИ©Ж
-   if ( !b ) return a; //мк╩╞гИ©Ж
-   if ( lt( a->data, b->data ) ) swap( a, b ); //х╥╠ёa>=b
-   ( a->rc = merge( a->rc, b ) )->parent = a; //╫╚a╣дсрвс╤яё╛сКb╨о╡╒
-   if ( !a->lc || ( a->lc->npl < a->rc->npl ) ) //хТсп╠ьр╙
-      swap( a->lc, a->rc ); //╫╩╩╩a╣двС║╒срвс╤яё╛ртх╥╠ёсрвс╤я╣дnpl╡╩╢С
-   a->npl = a->rc ? a->rc->npl + 1 : 1; //╦Эпбa╣дnpl
-   return a; //╥╣╩ь╨о╡╒╨С╣д╤я╤╔
-} //╠╬кЦ╥╗ж╩й╣ож╫А╧╧ио╣д╨о╡╒ё╛╤я╣д╧ФдёпКсиио╡Ц╣Всцуъ╦╨тП╦Эпб
+   if ( !a ) return b; //И──Е▄√Ф┐┘Е├╣
+   if ( !b ) return a; //И──Е▄√Ф┐┘Е├╣
+   if ( lt( a->data, b->data ) ) swap( a, b ); //Г║╝Д©²a>=b
+   ( a->rc = merge( a->rc, b ) )->parent = a; //Е╟├aГ └Е▐ЁЕ╜░Е═├О╪▄Д╦▌bЕ░┬Е╧╤
+   if ( !a->lc || ( a->lc->npl < a->rc->npl ) ) //Х▀╔Ф°┴Е©┘Х╕│
+      swap( a->lc, a->rc ); //Д╨╓Ф█╒aГ └Е╥╕Ц─│Е▐ЁЕ╜░Е═├О╪▄Д╩╔Г║╝Д©²Е▐ЁЕ╜░Е═├Г └nplД╦█Е╓╖
+   a->npl = a->rc ? a->rc->npl + 1 : 1; //Ф⌡╢Ф√╟aГ └npl
+   return a; //Х©■Е⌡·Е░┬Е╧╤Е░▌Г └Е═├И║╤
+} //Ф°╛Г╝≈ФЁ∙Е▐╙Е╝·Г▌╟Г╩⌠Ф·└Д╦┼Г └Е░┬Е╧╤О╪▄Е═├Г └Х╖└Ф╗║И║╩Г■╠Д╦┼Е╠┌Х╟┐Г■╗Х─┘Х╢÷Х╢ёФ⌡╢Ф√╟
 
 
 

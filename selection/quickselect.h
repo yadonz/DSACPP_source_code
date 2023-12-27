@@ -1,7 +1,7 @@
-template <typename T> void quickSelect( Vector<T>& A, Rank k ) { //基于快速划分的k选取算法
+template <typename T> void quickSelect( Vector<T>& A, Rank k ) { //鍩轰簬蹇�熷垝鍒嗙殑k閫夊彇绠楁硶
    for ( Rank lo = 0, hi = A.size(); lo < hi; ) {
-      Rank i = lo, j = hi; T pivot = A[lo]; //大胆猜测
-      while ( i < j ) { //小心求证：O(hi - lo + 1) = O(n)
+      Rank i = lo, j = hi; T pivot = A[lo]; //澶ц儐鐚滄祴
+      while ( i < j ) { //灏忓績姹傝瘉锛歄(hi - lo + 1) = O(n)
          do j--; while ( ( i < j ) && ( pivot <= A[j] ) );
          if ( i < j ) A[i] = A[j];
          do i++; while ( ( i < j ) && ( A[i] <= pivot ) );

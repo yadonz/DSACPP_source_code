@@ -8,14 +8,14 @@ unsigned int lcsMemoization(char const * A, int n, char const * B, int m);
 unsigned int lcsRecursion(char const * A, int n, char const * B, int m);
 
 /******************************************************************************************
- * ×î³¤¹«¹²×Ó´®
+ * æœ€é•¿å…¬å…±å­ä¸²
  * Example test cases:
  *    HNAJBJDJU   LDVFGDKD
  *    ZEIEZCCTPZ   WPUZALLPBXL
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
-   srand((unsigned int)time(NULL)); //Ëæ»úÖÖ×Ó
-   //srand( 31415926 ); //¹Ì¶¨ÖÖ×Ó£¨¼ÙÖÖ×Ó£¬µ÷ÊÔÓÃ£©
+   srand((unsigned int)time(NULL)); //éšæœºç§å­
+   //srand( 31415926 ); //å›ºå®šç§å­ï¼ˆå‡ç§å­ï¼Œè°ƒè¯•ç”¨ï¼‰
    int errors = 0, tests = 100;
    for (int k = 0; k < tests; k++) {
       printf("\n%d\n", k);

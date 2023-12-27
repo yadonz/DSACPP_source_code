@@ -1,11 +1,11 @@
-//¶þ·Ö²éÕÒËã·¨£¨°æ±¾C£©£ºÔÚÓÐÐòÏòÁ¿µÄÇø¼ä[lo, hi)ÄÚ²éÕÒÔªËØe£¬0 <= lo <= hi <= _size
+//äºŒåˆ†æŸ¥æ‰¾ç®—æ³•ï¼ˆç‰ˆæœ¬Cï¼‰ï¼šåœ¨æœ‰åºå‘é‡çš„åŒºé—´[lo, hi)å†…æŸ¥æ‰¾å…ƒç´ eï¼Œ0 <= lo <= hi <= _size
 template <typename T> static Rank binSearch( T* S, T const& e, Rank lo, Rank hi ) {
-   while ( lo < hi ) { //Ã¿²½µü´ú½öÐè×öÒ»´Î±È½ÏÅÐ¶Ï£¬ÓÐÁ½¸ö·ÖÖ§
-      Rank mi = ( lo + hi ) >> 1; //ÒÔÖÐµãÎªÖáµã£¨Çø¼ä¿í¶ÈÕÛ°ë£¬µÈÐ§ÓÚÆäÊýÖµ±íÊ¾µÄÓÒÒÆÒ»Î»£©
-      ( e < S[mi] ) ? hi = mi : lo = mi + 1; //¾­±È½ÏºóÈ·¶¨ÉîÈë[lo, mi)»ò(mi, hi)
-   } //³É¹¦²éÕÒ²»ÄÜÌáÇ°ÖÕÖ¹
-   return lo - 1; //ÖÁ´Ë£¬[lo]Îª´óÓÚeµÄ×îÐ¡Õß£¬¹Ê[lo-1]¼´Îª²»´óÓÚeµÄ×î´óÕß
-} //ÓÐ¶à¸öÃüÖÐÔªËØÊ±£¬·µ»Ø×î¿¿ºóÕß£»²éÕÒÊ§°ÜÊ±£¬·µ»ØÊ§°ÜµÄÎ»ÖÃ
+   while ( lo < hi ) { //æ¯æ­¥è¿­ä»£ä»…éœ€åšä¸€æ¬¡æ¯”è¾ƒåˆ¤æ–­ï¼Œæœ‰ä¸¤ä¸ªåˆ†æ”¯
+      Rank mi = ( lo + hi ) >> 1; //ä»¥ä¸­ç‚¹ä¸ºè½´ç‚¹ï¼ˆåŒºé—´å®½åº¦æŠ˜åŠï¼Œç­‰æ•ˆäºŽå…¶æ•°å€¼è¡¨ç¤ºçš„å³ç§»ä¸€ä½ï¼‰
+      ( e < S[mi] ) ? hi = mi : lo = mi + 1; //ç»æ¯”è¾ƒåŽç¡®å®šæ·±å…¥[lo, mi)æˆ–(mi, hi)
+   } //æˆåŠŸæŸ¥æ‰¾ä¸èƒ½æå‰ç»ˆæ­¢
+   return lo - 1; //è‡³æ­¤ï¼Œ[lo]ä¸ºå¤§äºŽeçš„æœ€å°è€…ï¼Œæ•…[lo-1]å³ä¸ºä¸å¤§äºŽeçš„æœ€å¤§è€…
+} //æœ‰å¤šä¸ªå‘½ä¸­å…ƒç´ æ—¶ï¼Œè¿”å›žæœ€é åŽè€…ï¼›æŸ¥æ‰¾å¤±è´¥æ—¶ï¼Œè¿”å›žå¤±è´¥çš„ä½ç½®
 
 
 

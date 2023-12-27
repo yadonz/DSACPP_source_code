@@ -1,12 +1,12 @@
-#include "PQ/PQ.h" //ÒıÈëÓÅÏÈ¼¶¶ÓÁĞADT
-#include "List/List.h" //ÒıÈëÁĞ±í
-template <typename T> class PQ_List : public PQ<T>, public List<T> { //»ùÓÚÁĞ±íÊµÏÖµÄÓÅÏÈ¼¶¶ÓÁĞ
+#include "PQ/PQ.h" //å¼•å…¥ä¼˜å…ˆçº§é˜Ÿåˆ—ADT
+#include "List/List.h" //å¼•å…¥åˆ—è¡¨
+template <typename T> class PQ_List : public PQ<T>, public List<T> { //åŸºäºåˆ—è¡¨å®ç°çš„ä¼˜å…ˆçº§é˜Ÿåˆ—
 public:
-   PQ_List() { } //Ä¬ÈÏ¹¹Ôì
-   PQ_List ( T* E, int n ) { while ( 0 < n-- ) insertAsFirst ( ( E[n] ) ); } //ÅúÁ¿¹¹Ôì
-   void insert ( T e ) { insertAsLast ( e ); } //Ö±½Ó½«ĞÂÔªËØ²åÖÁ¶ÓÁĞÄ©Î²
-   T getMax() { return selectMax()->data; } //È¡³öÓÅÏÈ¼¶×î¸ßµÄÔªËØ
-   T delMax() { return remove ( selectMax() ); } //É¾³ıÓÅÏÈ¼¶×î¸ßµÄÔªËØ
+   PQ_List() { } //é»˜è®¤æ„é€ 
+   PQ_List ( T* E, int n ) { while ( 0 < n-- ) insertAsFirst ( ( E[n] ) ); } //æ‰¹é‡æ„é€ 
+   void insert ( T e ) { insertAsLast ( e ); } //ç›´æ¥å°†æ–°å…ƒç´ æ’è‡³é˜Ÿåˆ—æœ«å°¾
+   T getMax() { return selectMax()->data; } //å–å‡ºä¼˜å…ˆçº§æœ€é«˜çš„å…ƒç´ 
+   T delMax() { return remove ( selectMax() ); } //åˆ é™¤ä¼˜å…ˆçº§æœ€é«˜çš„å…ƒç´ 
 }; //PQ_List
 
 

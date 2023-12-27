@@ -1,9 +1,9 @@
-template <typename T> template <typename VST> //ÔªËØÀàĞÍ¡¢²Ù×÷Æ÷
-void BinNode <T>::travPre( VST& visit ) { //¶ş²æÊ÷ÏÈĞò±éÀúËã·¨Í³Ò»Èë¿Ú
-   switch ( rand() % 3 ) { //´Ë´¦ÔİËæ»úÑ¡ÔñÒÔ×ö²âÊÔ£¬¹²ÈıÖÖÑ¡Ôñ
-      case 1 : travPre_I1( this, visit ); break; //µü´ú°æ#1
-      case 2 : travPre_I2( this, visit ); break; //µü´ú°æ#2
-      default : travPre_R( this, visit ); break; //µİ¹é°æ
+template <typename T> template <typename VST> //å…ƒç´ ç±»å‹ã€æ“ä½œå™¨
+void BinNode <T>::travPre( VST& visit ) { //äºŒå‰æ ‘å…ˆåºéå†ç®—æ³•ç»Ÿä¸€å…¥å£
+   switch ( rand() % 3 ) { //æ­¤å¤„æš‚éšæœºé€‰æ‹©ä»¥åšæµ‹è¯•ï¼Œå…±ä¸‰ç§é€‰æ‹©
+      case 1 : travPre_I1( this, visit ); break; //è¿­ä»£ç‰ˆ#1
+      case 2 : travPre_I2( this, visit ); break; //è¿­ä»£ç‰ˆ#2
+      default : travPre_R( this, visit ); break; //é€’å½’ç‰ˆ
    }
 }
 

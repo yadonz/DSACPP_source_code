@@ -1,6 +1,6 @@
-int shift0 ( int* A, int n, int k ) { //ÂùÁ¦µØ½«Êı×éÑ­»·×óÒÆkÎ»£¬O(nk)
+int shift0 ( int* A, int n, int k ) { //è›®åŠ›åœ°å°†æ•°ç»„å¾ªç¯å·¦ç§»kä½ï¼ŒO(nk)
    if ( k < 1 ) return 0; int mov = 0;
-   while ( k-- ) { //·´¸´ÒÔ1Îª¼ä¸ôÑ­»·×óÒÆ£¬¹²µü´úk´Î
+   while ( k-- ) { //åå¤ä»¥1ä¸ºé—´éš”å¾ªç¯å·¦ç§»ï¼Œå…±è¿­ä»£kæ¬¡
       mov += shift ( A, n, 0, 1 );
    }
    return mov;

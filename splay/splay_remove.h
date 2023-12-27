@@ -1,13 +1,13 @@
-template <typename T> bool Splay<T>::remove( const T& e ) { //´ÓÉìÕ¹Ê÷ÖĞÉ¾³ı¹Ø¼üÂëe
-   if ( !_root || ( e != search( e )->data ) ) return false; //ÈôÄ¿±ê´æÔÚ£¬ÔòÉìÕ¹ÖÁ¸ù
-   BinNodePosi<T> L = _root->lc, R = _root->rc; release( _root ); //¼ÇÏÂ×ó¡¢ÓÒ×ÓÊ÷L¡¢Rºó£¬ÊÍ·ÅÖ®
-   if ( !R ) { //ÈôR¿Õ£¬Ôò
-      if ( L ) L->parent = NULL; _root = L; //L¼´ÊÇÓàÊ÷
-   } else { //·ñÔò
-      _root = R; R->parent = NULL; search( e ); //ÔÚRÖĞÔÙ´Î²éÕÒe£º×¢¶¨Ê§°Ü£¬µ«ÆäÖĞµÄ×îĞ¡½Úµã±Ø
-      if (L) L->parent = _root; _root->lc = L; //ÉìÕ¹ÖÁ¸ù£¨ÇÒÎŞ×óº¢×Ó£©£¬¹Ê¿ÉÁîÆäÒÔL×÷Îª×ó×ÓÊ÷
+template <typename T> bool Splay<T>::remove( const T& e ) { //ä»ä¼¸å±•æ ‘ä¸­åˆ é™¤å…³é”®ç e
+   if ( !_root || ( e != search( e )->data ) ) return false; //è‹¥ç›®æ ‡å­˜åœ¨ï¼Œåˆ™ä¼¸å±•è‡³æ ¹
+   BinNodePosi<T> L = _root->lc, R = _root->rc; release( _root ); //è®°ä¸‹å·¦ã€å³å­æ ‘Lã€Råï¼Œé‡Šæ”¾ä¹‹
+   if ( !R ) { //è‹¥Rç©ºï¼Œåˆ™
+      if ( L ) L->parent = NULL; _root = L; //Lå³æ˜¯ä½™æ ‘
+   } else { //å¦åˆ™
+      _root = R; R->parent = NULL; search( e ); //åœ¨Rä¸­å†æ¬¡æŸ¥æ‰¾eï¼šæ³¨å®šå¤±è´¥ï¼Œä½†å…¶ä¸­çš„æœ€å°èŠ‚ç‚¹å¿…
+      if (L) L->parent = _root; _root->lc = L; //ä¼¸å±•è‡³æ ¹ï¼ˆä¸”æ— å·¦å­©å­ï¼‰ï¼Œæ•…å¯ä»¤å…¶ä»¥Lä½œä¸ºå·¦å­æ ‘
    }
-   if ( --_size ) updateHeight( _root ); return true; //¸üĞÂ¹æÄ£¼°Ê÷¸ß£¬±¨¸æÉ¾³ı³É¹¦
+   if ( --_size ) updateHeight( _root ); return true; //æ›´æ–°è§„æ¨¡åŠæ ‘é«˜ï¼ŒæŠ¥å‘Šåˆ é™¤æˆåŠŸ
 }
 
 

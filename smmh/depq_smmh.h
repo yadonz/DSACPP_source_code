@@ -1,5 +1,5 @@
-#include "Vector/Vector.h" //½èÖú¶àÖØ¼Ì³Ğ»úÖÆ£¬»ùÓÚÏòÁ¿
-#include "DEPQ/DEPQ.h" //°´ÕÕÓÅÏÈ¼¶¶ÓÁĞADTÊµÏÖµÄ
+#include "Vector/Vector.h" //å€ŸåŠ©å¤šé‡ç»§æ‰¿æœºåˆ¶ï¼ŒåŸºäºå‘é‡
+#include "DEPQ/DEPQ.h" //æŒ‰ç…§ä¼˜å…ˆçº§é˜Ÿåˆ—ADTå®ç°çš„
 
 template <typename T> class SMMH : public DEPQ<T>, public Vector<T> { //Symmetric Min-Max Heap
 protected:

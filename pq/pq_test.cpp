@@ -5,41 +5,41 @@
 //#include <windows.h>
 
 /******************************************************************************************
- * Õë¶Ô»ùÓÚÁĞ±í¡¢ÏòÁ¿ÒÔ¼°×óÊ½¶ÑÊµÏÖµÄÓÅÏÈ¼¶¶ÓÁĞ£¬×ö¹ı³ÌÍ³Ò»µÄ²âÊÔ
+ * é’ˆå¯¹åŸºäºåˆ—è¡¨ã€å‘é‡ä»¥åŠå·¦å¼å †å®ç°çš„ä¼˜å…ˆçº§é˜Ÿåˆ—ï¼Œåšè¿‡ç¨‹ç»Ÿä¸€çš„æµ‹è¯•
  ******************************************************************************************/
 template <typename PQ, typename T> void testHeap( Rank n ) {
-   Rank s = 2*n/3; T* A = new T[s]; //´´½¨ÈİÁ¿Îª2*n/3µÄÊı×é£¬ÇÒ
-   for ( T i = 0; i < 2 * (T)n / 3; i++ ) A[i] = dice( ( T ) 3 * n ); //ËùÓĞ´ÊÌõËæ»ú
-   PQ heap( A + n / 6, n / 3 ); //ÅúÁ¿½¨¶Ñ£¨PQ_ComplHeapÊµÏÖÁËRobert FloydËã·¨£©
+   Rank s = 2*n/3; T* A = new T[s]; //åˆ›å»ºå®¹é‡ä¸º2*n/3çš„æ•°ç»„ï¼Œä¸”
+   for ( T i = 0; i < 2 * (T)n / 3; i++ ) A[i] = dice( ( T ) 3 * n ); //æ‰€æœ‰è¯æ¡éšæœº
+   PQ heap( A + n / 6, n / 3 ); //æ‰¹é‡å»ºå †ï¼ˆPQ_ComplHeapå®ç°äº†Robert Floydç®—æ³•ï¼‰
    delete [] A;
-   while ( heap.size() < n ) { //Ëæ»ú²âÊÔ
-      if ( dice( 100 ) < 70 ) { //70%¸ÅÂÊ²åÈëĞÂ´ÊÌõ
+   while ( heap.size() < n ) { //éšæœºæµ‹è¯•
+      if ( dice( 100 ) < 70 ) { //70%æ¦‚ç‡æ’å…¥æ–°è¯æ¡
          T e = dice( ( T ) 3 * n );
          heap.insert( e );
-      } else { //30%¸ÅÂÊÕª³ı×î´ó´ÊÌõ
+      } else { //30%æ¦‚ç‡æ‘˜é™¤æœ€å¤§è¯æ¡
          if ( !heap.empty() ) {
             T e = heap.delMax();
          }
       }
    }
-   while ( !heap.empty() ) { //Çå¿Õ
+   while ( !heap.empty() ) { //æ¸…ç©º
       T e = heap.delMax();
    }
 }
 
 /******************************************************************************************
- * ÓÅÏÈ¼¶¶ÓÁĞ²âÊÔ
+ * ä¼˜å…ˆçº§é˜Ÿåˆ—æµ‹è¯•
  ******************************************************************************************/
 int main( int argc, char* argv[] ) {
    if ( 2 > argc ) { printf( "Usage: %s <size of test>\a\a\n", argv[0] ); return 1; }
-   srand((unsigned int)time(NULL)); //Ëæ»úÖÖ×Ó
-   //srand( 31415926 ); //¹Ì¶¨ÖÖ×Ó£¨¼ÙÖÖ×Ó£¬µ÷ÊÔÓÃ£©
+   srand((unsigned int)time(NULL)); //éšæœºç§å­
+   //srand( 31415926 ); //å›ºå®šç§å­ï¼ˆå‡ç§å­ï¼Œè°ƒè¯•ç”¨ï¼‰
 #if defined(DSA_PQ_LEFTHEAP)
-   testHeap<PQ_LeftHeap<int>, int>( atoi ( argv[1] ) ); //´ÊÌõÀàĞÍ¿ÉÒÔÔÚÕâÀïÈÎÒâÑ¡Ôñ
+   testHeap<PQ_LeftHeap<int>, int>( atoi ( argv[1] ) ); //è¯æ¡ç±»å‹å¯ä»¥åœ¨è¿™é‡Œä»»æ„é€‰æ‹©
 #elif defined(DSA_PQ_COMPLHEAP)
-   testHeap<PQ_ComplHeap<int>, int>( atoi ( argv[1] ) ); //´ÊÌõÀàĞÍ¿ÉÒÔÔÚÕâÀïÈÎÒâÑ¡Ôñ
+   testHeap<PQ_ComplHeap<int>, int>( atoi ( argv[1] ) ); //è¯æ¡ç±»å‹å¯ä»¥åœ¨è¿™é‡Œä»»æ„é€‰æ‹©
 #elif defined(DSA_PQ_LIST)
-   testHeap<PQ_List<int>, int>( atoi ( argv[1] ) ); //´ÊÌõÀàĞÍ¿ÉÒÔÔÚÕâÀïÈÎÒâÑ¡Ôñ
+   testHeap<PQ_List<int>, int>( atoi ( argv[1] ) ); //è¯æ¡ç±»å‹å¯ä»¥åœ¨è¿™é‡Œä»»æ„é€‰æ‹©
 #else
    printf( "PQ type not defined yet\n" );
 #endif

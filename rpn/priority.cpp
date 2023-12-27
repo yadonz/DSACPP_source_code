@@ -1,19 +1,19 @@
-Operator optr2rank ( char op ) { //ÓÉÔËËã·û×ªÒë³ö±àºÅ
+Operator optr2rank ( char op ) { //ç”±è¿ç®—ç¬¦è½¬è¯‘å‡ºç¼–å·
    switch ( op ) {
-      case '&#43;' : return ADD; //¼Ó
-      case '&#45;' : return SUB; //¼õ
-      case '&#42;' : return MUL; //³Ë
-      case '&#47;' : return DIV; //³ı
-      case '&#94;' : return POW; //³Ë·½
-      case '&#33;' : return FAC; //½×³Ë
-      case '&#40;' : return L_P; //×óÀ¨ºÅ
-      case '&#41;' : return R_P; //ÓÒÀ¨ºÅ
-      case '&#92;0': return EOE; //ÆğÊ¼·ûÓëÖÕÖ¹·û
-      default  : exit ( -1 ); //Î´ÖªÔËËã·û
+      case '&#43;' : return ADD; //åŠ 
+      case '&#45;' : return SUB; //å‡
+      case '&#42;' : return MUL; //ä¹˜
+      case '&#47;' : return DIV; //é™¤
+      case '&#94;' : return POW; //ä¹˜æ–¹
+      case '&#33;' : return FAC; //é˜¶ä¹˜
+      case '&#40;' : return L_P; //å·¦æ‹¬å·
+      case '&#41;' : return R_P; //å³æ‹¬å·
+      case '&#92;0': return EOE; //èµ·å§‹ç¬¦ä¸ç»ˆæ­¢ç¬¦
+      default  : exit ( -1 ); //æœªçŸ¥è¿ç®—ç¬¦
    }
 }
 
-char priority ( char op1, char op2 ) //±È½ÏÁ½¸öÔËËã·ûÖ®¼äµÄÓÅÏÈ¼¶
+char priority ( char op1, char op2 ) //æ¯”è¾ƒä¸¤ä¸ªè¿ç®—ç¬¦ä¹‹é—´çš„ä¼˜å…ˆçº§
 { return pri[optr2rank ( op1 ) ][optr2rank ( op2 ) ]; }
 
 

@@ -1,4 +1,4 @@
-__int64 power ( __int64 a, int n ) { //a^nËã·¨£ºn >= 0
+__int64 power ( __int64 a, int n ) { //a^nç®—æ³•ï¼šn >= 0
    __int64 pow = 1; //O(1)
    __int64 p = a; //O(1)
    while ( 0 < n ) { //O(logn)

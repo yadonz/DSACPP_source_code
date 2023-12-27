@@ -1,8 +1,8 @@
-template <typename T> //ÏòÁ¿¿ìËÙÅÅĞò
+template <typename T> //å‘é‡å¿«é€Ÿæ’åº
 void Vector<T>::quickSort( Rank lo, Rank hi ) { // 0 <= lo < hi <= size
-   if ( hi - lo < 2 ) return; //µ¥ÔªËØÇø¼ä×ÔÈ»ÓĞĞò£¬·ñÔò...
-   Rank mi = partition( lo, hi ); //ÔÚ[lo, hi)ÄÚ¹¹ÔìÖáµã
-   quickSort( lo, mi ); quickSort( mi + 1, hi ); //Ç°×º¡¢ºó×º¸÷×Ôµİ¹éÅÅĞò
+   if ( hi - lo < 2 ) return; //å•å…ƒç´ åŒºé—´è‡ªç„¶æœ‰åºï¼Œå¦åˆ™...
+   Rank mi = partition( lo, hi ); //åœ¨[lo, hi)å†…æ„é€ è½´ç‚¹
+   quickSort( lo, mi ); quickSort( mi + 1, hi ); //å‰ç¼€ã€åç¼€å„è‡ªé€’å½’æ’åº
 }
 
 

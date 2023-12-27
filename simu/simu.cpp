@@ -1,17 +1,17 @@
-void simulate ( Rank nWin, Rank servTime ) { //°´Ö¸¶¨´°¿ÚÊı¡¢·şÎñ×ÜÊ±¼äÄ£ÄâÒøĞĞÒµÎñ
-   Queue<Customer>* windows = new Queue<Customer>[nWin]; //ÎªÃ¿Ò»´°¿Ú´´½¨Ò»¸ö¶ÓÁĞ
-   for ( Rank now = 0; now < servTime; now++ ) { //ÔÚÏÂ°àÖ®Ç°£¬Ã¿¸ôÒ»¸öµ¥Î»Ê±¼ä
-      if ( rand() % ( 1 + nWin ) ) { //ĞÂ¹Ë¿ÍÒÔnWin/(nWin + 1)µÄ¸ÅÂÊµ½´ï
-         Customer c ; c.time = 1 + rand() % 98; //ĞÂ¹Ë¿Íµ½´ï£¬·şÎñÊ±³¤Ëæ»úÈ·¶¨
-         c.window = bestWindow ( windows, nWin ); //ÕÒ³ö×î¼Ñ£¨×î¶Ì£©µÄ·şÎñ´°¿Ú
-         windows[c.window].enqueue ( c ); //ĞÂ¹Ë¿Í¼ÓÈë¶ÔÓ¦µÄ¶ÓÁĞ
+void simulate ( Rank nWin, Rank servTime ) { //æŒ‰æŒ‡å®šçª—å£æ•°ã€æœåŠ¡æ€»æ—¶é—´æ¨¡æ‹Ÿé“¶è¡Œä¸šåŠ¡
+   Queue<Customer>* windows = new Queue<Customer>[nWin]; //ä¸ºæ¯ä¸€çª—å£åˆ›å»ºä¸€ä¸ªé˜Ÿåˆ—
+   for ( Rank now = 0; now < servTime; now++ ) { //åœ¨ä¸‹ç­ä¹‹å‰ï¼Œæ¯éš”ä¸€ä¸ªå•ä½æ—¶é—´
+      if ( rand() % ( 1 + nWin ) ) { //æ–°é¡¾å®¢ä»¥nWin/(nWin + 1)çš„æ¦‚ç‡åˆ°è¾¾
+         Customer c ; c.time = 1 + rand() % 98; //æ–°é¡¾å®¢åˆ°è¾¾ï¼ŒæœåŠ¡æ—¶é•¿éšæœºç¡®å®š
+         c.window = bestWindow ( windows, nWin ); //æ‰¾å‡ºæœ€ä½³ï¼ˆæœ€çŸ­ï¼‰çš„æœåŠ¡çª—å£
+         windows[c.window].enqueue ( c ); //æ–°é¡¾å®¢åŠ å…¥å¯¹åº”çš„é˜Ÿåˆ—
       }
-      for ( Rank i = 0; i < nWin; i++ ) //·Ö±ğ¼ì²é
-         if ( !windows[i].empty() ) //¸÷·Ç¿Õ¶ÓÁĞ
-            if ( -- windows[i].front().time <= 0 ) //¶ÓÊ×¹Ë¿ÍµÄ·şÎñÊ±³¤¼õÉÙÒ»¸öµ¥Î»
-               windows[i].dequeue(); //·şÎñÍê±ÏµÄ¹Ë¿Í³öÁĞ£¬ÓÉºó¼Ì¹Ë¿Í½ÓÌæ
+      for ( Rank i = 0; i < nWin; i++ ) //åˆ†åˆ«æ£€æŸ¥
+         if ( !windows[i].empty() ) //å„éç©ºé˜Ÿåˆ—
+            if ( -- windows[i].front().time <= 0 ) //é˜Ÿé¦–é¡¾å®¢çš„æœåŠ¡æ—¶é•¿å‡å°‘ä¸€ä¸ªå•ä½
+               windows[i].dequeue(); //æœåŠ¡å®Œæ¯•çš„é¡¾å®¢å‡ºåˆ—ï¼Œç”±åç»§é¡¾å®¢æ¥æ›¿
    } //for
-   delete [] windows; //ÊÍ·ÅËùÓĞ¶ÓÁĞ£¨´ËÇ°£¬~List()»á×Ô¶¯Çå¿Õ¶ÓÁĞ£©
+   delete [] windows; //é‡Šæ”¾æ‰€æœ‰é˜Ÿåˆ—ï¼ˆæ­¤å‰ï¼Œ~List()ä¼šè‡ªåŠ¨æ¸…ç©ºé˜Ÿåˆ—ï¼‰
 }
 
 

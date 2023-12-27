@@ -1,4 +1,4 @@
-void Eratosthenes ( Rank n, char* file ); //É¸·¨ÇóËØÊı
+void Eratosthenes ( Rank n, char* file ); //ç­›æ³•æ±‚ç´ æ•°
 
 
 

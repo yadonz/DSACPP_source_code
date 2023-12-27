@@ -2,14 +2,14 @@
 # Example of Perl hash
 #
 my    %hero = (  # identifier preceded by % holds a group of values, keyed by string
-        "‘∆≥§"=>"πÿ”",
-        "“Ìµ¬"=>"’≈∑…",
-        "◊”¡˙"=>"’‘‘∆",
-        "√œ∆"=>"¬Ì≥¨"
+        "‰∫ëÈïø"=>"ÂÖ≥ÁæΩ",
+        "ÁøºÂæ∑"=>"Âº†È£û",
+        "Â≠êÈæô"=>"Ëµµ‰∫ë",
+        "Â≠üËµ∑"=>"È©¨Ë∂Ö"
     );
 foreach $style (keys %hero)
     { print "  ($style,$hero{$style})"; }    print "\n";
-$hero{"∫∫…˝"} = "ª∆÷“";
+$hero{"Ê±âÂçá"} = "ÈªÑÂø†";
 foreach $style (keys %hero)
     { print "  ($style,$hero{$style})"; }    print "\n";
 foreach $style (sort keys %hero)

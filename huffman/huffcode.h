@@ -1,5 +1,5 @@
-#include "Bitmap/Bitmap.h" //»ùÓÚBitmapÊµÏÖ
-using HuffCode = Bitmap; //Huffman¶ş½øÖÆ±àÂë
+#include "Bitmap/Bitmap.h" //åŸºäºBitmapå®ç°
+using HuffCode = Bitmap; //HuffmanäºŒè¿›åˆ¶ç¼–ç 
 
 
 

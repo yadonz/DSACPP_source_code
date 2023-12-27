@@ -1,5 +1,5 @@
-template <typename T> Rank RedBlack<T>::updateHeight( BinNodePosi<T> x ) { //¸üĞÂ½Úµã¸ß¶È
-   return x->height = IsBlack( x ) + max( stature( x->lc ), stature( x->rc ) ); //º¢×ÓºÚ¸ß¶ÈÍ¨³£ÏàµÈ£¬³ı·Ç³öÏÖË«ºÚ
+template <typename T> Rank RedBlack<T>::updateHeight( BinNodePosi<T> x ) { //æ›´æ–°èŠ‚ç‚¹é«˜åº¦
+   return x->height = IsBlack( x ) + max( stature( x->lc ), stature( x->rc ) ); //å­©å­é»‘é«˜åº¦é€šå¸¸ç›¸ç­‰ï¼Œé™¤éå‡ºç°åŒé»‘
 }
 
 

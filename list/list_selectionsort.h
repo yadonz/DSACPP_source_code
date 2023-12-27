@@ -1,10 +1,10 @@
-template <typename T> //¶ÔÁĞ±íÖĞÆğÊ¼ÓÚÎ»ÖÃp¡¢¿í¶ÈÎªnµÄÇø¼ä×öÑ¡ÔñÅÅĞò
+template <typename T> //å¯¹åˆ—è¡¨ä¸­èµ·å§‹äºä½ç½®pã€å®½åº¦ä¸ºnçš„åŒºé—´åšé€‰æ‹©æ’åº
 void List<T>::selectionSort( ListNodePosi<T> p, Rank n ) { // valid(p) && Rank(p) + n <= size
    ListNodePosi<T> head = p->pred, tail = p;
-   for ( Rank i = 0; i < n; i++ ) tail = tail->succ; //´ıÅÅĞòÇø¼äÎª(head, tail)
-   while ( 1 < n ) { //ÔÚÖÁÉÙ»¹Ê£Á½¸ö½ÚµãÖ®Ç°£¬ÔÚ´ıÅÅĞòÇø¼äÄÚ
-      ListNodePosi<T> max = selectMax ( head->succ, n ); //ÕÒ³ö×î´óÕß£¨ÆçÒåÊ±ºóÕßÓÅÏÈ£©
-      insert( remove( max ), tail ); //½«ÆäÒÆÖÁÎŞĞòÇø¼äÄ©Î²£¨×÷ÎªÓĞĞòÇø¼äĞÂµÄÊ×ÔªËØ£©
+   for ( Rank i = 0; i < n; i++ ) tail = tail->succ; //å¾…æ’åºåŒºé—´ä¸º(head, tail)
+   while ( 1 < n ) { //åœ¨è‡³å°‘è¿˜å‰©ä¸¤ä¸ªèŠ‚ç‚¹ä¹‹å‰ï¼Œåœ¨å¾…æ’åºåŒºé—´å†…
+      ListNodePosi<T> max = selectMax ( head->succ, n ); //æ‰¾å‡ºæœ€å¤§è€…ï¼ˆæ­§ä¹‰æ—¶åè€…ä¼˜å…ˆï¼‰
+      insert( remove( max ), tail ); //å°†å…¶ç§»è‡³æ— åºåŒºé—´æœ«å°¾ï¼ˆä½œä¸ºæœ‰åºåŒºé—´æ–°çš„é¦–å…ƒç´ ï¼‰
       tail = tail->pred; n--;
    }
 }

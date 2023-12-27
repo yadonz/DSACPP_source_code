@@ -1,4 +1,4 @@
-//通过zig旋转调整，将BST子树x拉伸成最右侧通路
+//閫氳繃zig鏃嬭浆璋冩暣锛屽皢BST瀛愭爲x鎷変几鎴愭渶鍙充晶閫氳矾
 template <typename T> void stretchByZig( BinNodePosi<T>& x ) {
    BinNodePosi<T> v = x;
    while ( x->lc ) x = x->lc;

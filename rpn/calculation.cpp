@@ -1,6 +1,6 @@
-double calcu ( char op, double b ) { //Ö´ĞĞÒ»ÔªÔËËã
+double calcu ( char op, double b ) { //æ‰§è¡Œä¸€å…ƒè¿ç®—
    switch ( op ) {
-      case '&#33;' : return ( double ) facI ( ( int ) b ); //Ä¿Ç°½öÓĞ½×³Ë£¬¿ÉÕÕ´Ë·½Ê½Ìí¼Ó
+      case '&#33;' : return ( double ) facI ( ( int ) b ); //ç›®å‰ä»…æœ‰é˜¶ä¹˜ï¼Œå¯ç…§æ­¤æ–¹å¼æ·»åŠ 
       default  : exit ( -1 );
    }
 }

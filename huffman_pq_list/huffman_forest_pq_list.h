@@ -1,5 +1,5 @@
-#include "PQ_List/PQ_List.h" //用PQ_List实现
-using HuffForest = PQ_List<HuffTree*>; //Huffman森林
+#include "PQ_List/PQ_List.h" //鐢≒Q_List瀹炵幇
+using HuffForest = PQ_List<HuffTree*>; //Huffman妫灄
 
 
 

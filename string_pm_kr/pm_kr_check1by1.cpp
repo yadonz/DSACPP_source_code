@@ -1,6 +1,6 @@
-bool check1by1 ( char* P, char* T, size_t i ) { //Ö¸ÎÆÏàÍ¬Ê±£¬ÖğÎ»±È¶ÔÒÔÈ·ÈÏÊÇ·ñÕæÕıÆ¥Åä
-   for ( size_t m = strlen ( P ), j = 0; j < m; j++, i++ ) //¾¡¹ÜĞèÒªO(m)Ê±¼ä
-      if ( P[j] != T[i] ) return false; //µ«Ö»ÒªÉ¢ÁĞµÃµ±£¬µ÷ÓÃ±¾Àı³Ì²¢·µ»ØfalseµÄ¸ÅÂÊ½«¼«µÍ
+bool check1by1 ( char* P, char* T, size_t i ) { //æŒ‡çº¹ç›¸åŒæ—¶ï¼Œé€ä½æ¯”å¯¹ä»¥ç¡®è®¤æ˜¯å¦çœŸæ­£åŒ¹é…
+   for ( size_t m = strlen ( P ), j = 0; j < m; j++, i++ ) //å°½ç®¡éœ€è¦O(m)æ—¶é—´
+      if ( P[j] != T[i] ) return false; //ä½†åªè¦æ•£åˆ—å¾—å½“ï¼Œè°ƒç”¨æœ¬ä¾‹ç¨‹å¹¶è¿”å›falseçš„æ¦‚ç‡å°†æä½
    return true;
 }
 

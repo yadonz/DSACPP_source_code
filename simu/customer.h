@@ -1,4 +1,4 @@
-struct Customer { int window; unsigned int time; }; //¹Ë¿ÍÀà£ºËùÊô´°¿Ú£¨¶ÓÁĞ£©¡¢·şÎñÊ±³¤
+struct Customer { int window; unsigned int time; }; //é¡¾å®¢ç±»ï¼šæ‰€å±çª—å£ï¼ˆé˜Ÿåˆ—ï¼‰ã€æœåŠ¡æ—¶é•¿
 
 
 

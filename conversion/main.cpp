@@ -1,15 +1,15 @@
 #include "convert.h"
 
 /******************************************************************************************
- * 进制转换
+ * 杩涘埗杞崲
  ******************************************************************************************/
 int main ( int argc, char* argv[] ) {
    for ( int i = 1; i < argc; i += 2 ) {
-      __int64 n = _atoi64 ( argv[i] ); //待转换的十进制数
-      int base = atoi ( argv[i+1] ); //目标进制
-      Stack<char> S; //用栈记录转换得到的各数位
-      convert ( S, n, base ); //进制转换
-      while ( !S.empty() ) printf ( "%c", ( S.pop() ) ); //逆序输出栈内数位，即正确结果
+      __int64 n = _atoi64 ( argv[i] ); //寰呰浆鎹㈢殑鍗佽繘鍒舵暟
+      int base = atoi ( argv[i+1] ); //鐩爣杩涘埗
+      Stack<char> S; //鐢ㄦ爤璁板綍杞崲寰楀埌鐨勫悇鏁颁綅
+      convert ( S, n, base ); //杩涘埗杞崲
+      while ( !S.empty() ) printf ( "%c", ( S.pop() ) ); //閫嗗簭杈撳嚭鏍堝唴鏁颁綅锛屽嵆姝ｇ‘缁撴灉
    }
    return 0;
 }

@@ -1,7 +1,7 @@
 #include "UniPrint/print.h"
 #include "vector/vector.h"
 
-Vector<int> //生成长度为n的随机有序向量，元素取值来自[min, max]
+Vector<int> //鐢熸垚闀垮害涓簄鐨勯殢鏈烘湁搴忓悜閲忥紝鍏冪礌鍙栧�兼潵鑷猍min, max]
 randomSortedVector ( Rank n, int min, int max ) { //ACP, Vol.2, Algorithm S
    Vector<int> A;
    for ( int i = min; i <= max; i++ )

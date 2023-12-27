@@ -1,10 +1,10 @@
-template <typename T> void Vector<T>::expand() { //ÏòÁ¿¿Õ¼ä²»×ãÊ±À©Èİ
-   if ( _size < _capacity ) return; //ÉĞÎ´ÂúÔ±Ê±£¬²»±ØÀ©Èİ
-   if ( _capacity < DEFAULT_CAPACITY ) _capacity = DEFAULT_CAPACITY; //²»µÍÓÚ×îĞ¡ÈİÁ¿
-   T* oldElem = _elem;  _elem = new T[_capacity <<= 1]; //ÈİÁ¿¼Ó±¶
+template <typename T> void Vector<T>::expand() { //å‘é‡ç©ºé—´ä¸è¶³æ—¶æ‰©å®¹
+   if ( _size < _capacity ) return; //å°šæœªæ»¡å‘˜æ—¶ï¼Œä¸å¿…æ‰©å®¹
+   if ( _capacity < DEFAULT_CAPACITY ) _capacity = DEFAULT_CAPACITY; //ä¸ä½äºæœ€å°å®¹é‡
+   T* oldElem = _elem;  _elem = new T[_capacity <<= 1]; //å®¹é‡åŠ å€
    for ( Rank i = 0; i < _size; i++ )
-      _elem[i] = oldElem[i]; //¸´ÖÆÔ­ÏòÁ¿ÄÚÈİ£¨TÎª»ù±¾ÀàĞÍ£¬»òÒÑÖØÔØ¸³Öµ²Ù×÷·û'&#61;'£©
-   delete [] oldElem; //ÊÍ·ÅÔ­¿Õ¼ä
+      _elem[i] = oldElem[i]; //å¤åˆ¶åŸå‘é‡å†…å®¹ï¼ˆTä¸ºåŸºæœ¬ç±»å‹ï¼Œæˆ–å·²é‡è½½èµ‹å€¼æ“ä½œç¬¦'&#61;'ï¼‰
+   delete [] oldElem; //é‡Šæ”¾åŸç©ºé—´
 }
 
 

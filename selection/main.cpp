@@ -7,12 +7,12 @@
 #include "vector/vector.h"
 #include "quickSelect.h"
 
-int main( int argc, char* argv[] ) { //»ùÓÚ¿ìËÙ»®·ÖµÄkÑ¡È¡Ëã·¨²âÊÔ
+int main( int argc, char* argv[] ) { //åŸºäºŽå¿«é€Ÿåˆ’åˆ†çš„ké€‰å–ç®—æ³•æµ‹è¯•
    if ( 2 > argc ) { printf ( "Usage: %s <n>\a\a\n", argv[0] ); return 1; }
    Rank n = atoi( argv[1] );
    if ( n < 1 ) { printf ( "Invalid arguments\a\a\n" ); return 1; }
-   srand((unsigned int)time(NULL)); //Ëæ»úÖÖ×Ó
-   //srand( 31415926 ); //¹Ì¶¨ÖÖ×Ó£¨¼ÙÖÖ×Ó£¬µ÷ÊÔÓÃ£©
+   srand((unsigned int)time(NULL)); //éšæœºç§å­
+   //srand( 31415926 ); //å›ºå®šç§å­ï¼ˆå‡ç§å­ï¼Œè°ƒè¯•ç”¨ï¼‰
    for ( Rank k = 0; k < n; k++ ) {
       Vector<int> A;
       while ( A.size() < n ) // create a random vector

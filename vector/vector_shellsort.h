@@ -1,4 +1,4 @@
-template <typename T> //ÏòÁ¿Ï£¶ûÅÅĞò
+template <typename T> //å‘é‡å¸Œå°”æ’åº
 void Vector<T>::shellSort( Rank lo, Rank hi ) { // 0 <= lo < hi <= size <= 2^31
    for ( Rank d = 0x7FFFFFFF; 0 < d; d >>= 1 ) // PS Sequence: { 1, 3, 7, 15, 31, ... }
       for ( Rank j = lo + d; j < hi; j++ ) { // for each j in [lo+d, hi)
