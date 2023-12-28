@@ -21,7 +21,7 @@ def download(url):
     dir_name, src_name = url.split("/")[-2:]  # 获取文件夹名和源码名
     if not os.path.isdir(dir_name):  # 如果目录不存在，那么创建目录
         os.mkdir(os.path.join(os.getcwd(), dir_name))
-    text = get_html(url)    # 获取代码路径
+    text = get_html(url)    # 获取代码页面
     if (text != -1):
         with open(os.path.join(os.getcwd(), dir_name, src_name), "w") as f:
             f.write(text)
@@ -65,6 +65,6 @@ if __name__ == "__main__":
     # 批量将 html 文件转换成源码
     for dirpath, dirnames, filenames in os.walk("./"):
         for file in filenames:
-            if file != "deal.py":
+            if file != "爬虫加代码处理.py":  # 排除源代码文件
                 print(os.path.join(dirpath, file))
                 do_process2file(os.path.join(dirpath, file))
